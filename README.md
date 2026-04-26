@@ -1,2 +1,37 @@
-# supply-chain-analytics
-End-to-end supply chain demand forecasting and process gap analysis using SQL, Python, and Power BI — built as part of my business analytics portfolio
+# Supply Chain Demand Forecasting & Process Gap Analysis
+
+## Project Overview
+A consumer goods company is losing revenue to stockouts on fast-moving products 
+while slow-moving inventory sits idle in the warehouse. This project diagnoses 
+the root causes, forecasts demand for the next 90 days, and delivers an 
+executive dashboard leadership can act on.
+
+This is the kind of analysis a supply chain analyst or business consultant 
+delivers in the first weeks of an engagement.
+
+## Tools Used
+- **Python** (pandas, Prophet) — data cleaning and demand forecasting
+- **SQL** — diagnostic queries to identify supply chain failure points
+- **Power BI** — executive KPI dashboard with regional breakdown
+- **Dataset** — DataCo Global Supply Chain (Kaggle)
+
+## Key Questions Answered
+1. Which product categories are at stockout risk in the next 90 days?
+2. Where in the supply chain are late deliveries concentrated?
+3. How much capital is tied up in overstocked slow-moving SKUs?
+
+## Project Structure
+supply-chain-analytics/
+│
+├── data/               # Raw and cleaned dataset files
+├── notebooks/          # Jupyter/Colab notebooks
+├── sql/                # SQL diagnostic scripts
+├── dashboard/          # Power BI .pbix file and screenshots
+└── visuals/            # Charts exported from Python
+
+## Status
+🔄 In progress — Phase 1: Data exploration
+
+## Author
+[Cynthia Ng'ang'a] | Business Analytics Graduate Student  
+[https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/?skipRedirect=true]
