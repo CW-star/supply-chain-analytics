@@ -30,10 +30,10 @@ supply-chain-analytics/
 └── visuals/            # Charts exported from Python
 
 ## Status
-## Status
 ✅ Phase 1 Complete — Data Exploration & Diagnostic Visualizations  
 ✅ Phase 2 Complete — SQL Diagnostic Analysis (5 queries, 5 findings)  
-🔄 Phase 3 In Progress — Python Demand Forecasting
+✅ Phase 3 Complete — Python Demand Forecasting (Prophet Model)  
+🔄 Phase 4 In Progress — Power BI Executive Dashboard
 
 ## Author
 [Cynthia Ng'ang'a] | Business Analytics Graduate Student  
