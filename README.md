@@ -12,6 +12,9 @@ delivers in the first weeks of an engagement.
 ## Tools Used
 - **Python** (pandas, Prophet) — data cleaning and demand forecasting
 - **SQL** — diagnostic queries to identify supply chain failure points
+- ## Live Dashboard
+🔗 [View Interactive Tableau Dashboard]
+(https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 - **Power BI** — executive KPI dashboard with regional breakdown
 - **Dataset** — DataCo Global Supply Chain (Kaggle)
 
