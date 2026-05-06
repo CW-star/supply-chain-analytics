@@ -36,8 +36,9 @@ supply-chain-analytics/
 ✅ Phase 1 Complete — Data Exploration & Diagnostic Visualizations  
 ✅ Phase 2 Complete — SQL Diagnostic Analysis (5 queries, 5 findings)  
 ✅ Phase 3 Complete — Python Demand Forecasting (Prophet Model)  
-✅ Phase 4 Complete — Tableau Interactive Dashboard (live link above)  
-🔄 Phase 5 In Progress — Power BI Dashboard
+✅ Phase 4 Complete — Tableau Interactive Dashboard  
+✅ Phase 5 Complete — Power BI Dashboard  
+🔄 Phase 6 In Progress — Portfolio Website
 
 ## Author
 [Cynthia Ng'ang'a] | Business Analytics Graduate Student  
