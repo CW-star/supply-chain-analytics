@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cynthia Wanjiku Ng'ang'a — Business Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05070F;
+  --bg2:#080D1A;
+  --bg3:#0C1220;
+  --panel:#0F1628;
+  --glass:rgba(255,255,255,0.03);
+  --glass2:rgba(255,255,255,0.06);
+  --cyan:#00D4FF;
+  --cyan2:#00A8CC;
+  --purple:#9B59FF;
+  --purple2:#7B3FE4;
+  --pink:#FF3CAC;
+  --green:#00FF9D;
+  --amber:#FFB830;
+  --red:#FF4757;
+  --text:#E8EEFF;
+  --muted:#6B7FA8;
+  --border:rgba(0,212,255,0.08);
+  --border2:rgba(255,255,255,0.06);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Manrope,sans-serif;font-weight:400;overflow-x:hidden;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 0%,rgba(0,212,255,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 100%,rgba(155,89,255,0.06) 0%,transparent 60%);pointer-events:none;z-index:0}
+
+/* SIDE NAV */
+.sidenav{position:fixed;left:1.5rem;top:50%;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;align-items:center;gap:0.75rem;background:rgba(8,13,26,0.7);backdrop-filter:blur(20px);border:1px solid var(--border2);border-radius:50px;padding:1.25rem 0.6rem}
+.sn-item{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;color:var(--muted);font-size:1rem;position:relative;background:transparent;border:none}
+.sn-item:hover,.sn-item.active{background:rgba(0,212,255,0.12);color:var(--cyan);box-shadow:0 0 16px rgba(0,212,255,0.2)}
+.sn-item .tooltip{position:absolute;left:calc(100% + 0.75rem);background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.75rem;font-size:0.72rem;font-family:Space Mono,monospace;color:var(--cyan);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;letter-spacing:0.05em}
+.sn-item:hover .tooltip{opacity:1}
+
+/* PAGES */
+.page{display:none;position:relative;z-index:1}.page.active{display:block}
+
+/* ===== HOME ===== */
+.home-wrap{padding-left:5rem}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 4rem;position:relative;overflow:hidden}
+.hero-orb1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,0.08) 0%,transparent 70%);top:-200px;left:-200px;pointer-events:none;animation:drift1 8s ease-in-out infinite}
+.hero-orb2{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(155,89,255,0.08) 0%,transparent 70%);bottom:-200px;right:-200px;pointer-events:none;animation:drift2 10s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,-40px)}}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.hero-greeting{font-family:Space Mono,monospace;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+.hero-greeting::before,.hero-greeting::after{content:"";flex:1;max-width:4rem;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
+.hero-greeting::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+h1{font-family:Syne,sans-serif;font-size:clamp(3.5rem,7vw,7rem);font-weight:800;line-height:0.95;letter-spacing:-0.04em;margin-bottom:1.75rem}
+.h1-name{background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.7) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h1-accent{background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.hero-tagline{font-size:0.95rem;color:var(--muted);max-width:580px;margin:0 auto 2.5rem;line-height:1.85}
+.hero-tagline strong{color:var(--text)}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem}
+.btn-glow{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#05070F;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:Manrope,sans-serif;transition:all .3s;letter-spacing:0.04em;position:relative;overflow:hidden}
+.btn-glow::before{content:"";position:absolute;inset:-2px;background:linear-gradient(135deg,var(--cyan),var(--purple));border-radius:50px;z-index:-1;opacity:0;transition:opacity .3s}
+.btn-glow:hover{transform:translateY(-3px);box-shadow:0 0 30px rgba(0,212,255,0.4)}
+.btn-outline-glow{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.15);border-radius:50px;font-size:0.85rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:Manrope,sans-serif;transition:all .3s;backdrop-filter:blur(8px)}
+.btn-outline-glow:hover{border-color:var(--purple);color:var(--purple);transform:translateY(-2px);box-shadow:0 0 20px rgba(155,89,255,0.2)}
+.hero-stats{display:flex;justify-content:center;gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--glass);backdrop-filter:blur(20px)}
+.stat{padding:1.5rem 3rem;position:relative}
+.stat::after{content:"";position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border2)}
+.stat:last-child::after{display:none}
+.stat-n{font-family:Syne,sans-serif;font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;line-height:1}
+.stat-l{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;display:block}
+
+/* TOOLS BAND */
+.tools-band{background:rgba(8,13,26,0.8);backdrop-filter:blur(20px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 4rem 1.5rem 6rem;display:flex;align-items:center;gap:3rem;overflow:hidden}
+.tb-label{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex-shrink:0}
+.tb-scroll{display:flex;gap:0.6rem;flex-wrap:wrap}
+.tc{display:inline-flex;align-items:center;gap:0.4rem;padding:0.32rem 0.85rem;background:var(--glass2);border:1px solid var(--border2);border-radius:50px;font-family:Space Mono,monospace;font-size:0.62rem;color:var(--muted);transition:all .3s;cursor:default;letter-spacing:0.04em}
+.tc:hover{border-color:rgba(0,212,255,0.3);color:var(--cyan);background:rgba(0,212,255,0.05);box-shadow:0 0 12px rgba(0,212,255,0.1)}
+.tc-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+/* PROJECTS SECTION */
+.projects-section{padding:7rem 4rem 7rem 5.5rem}
+.sec-label{font-family:Space Mono,monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem}
+.sec-label::before{content:"";width:2rem;height:1px;background:var(--cyan)}
+.sec-title{font-family:Syne,sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:4rem;line-height:1.05}
+.sec-title em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* FEATURED PROJECT CARD */
+.feat-card{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:24px;overflow:hidden;cursor:pointer;transition:all .4s;margin-bottom:2rem;background:var(--panel);position:relative}
+.feat-card::before{content:"";position:absolute;inset:0;border-radius:24px;background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(155,89,255,0.05));opacity:0;transition:opacity .4s}
+.feat-card:hover{transform:translateY(-8px);border-color:rgba(0,212,255,0.3);box-shadow:0 0 60px rgba(0,212,255,0.1),0 40px 80px rgba(0,0,0,0.4)}
+.feat-card:hover::before{opacity:1}
+.feat-visual{background:var(--bg3);padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;min-height:420px;position:relative;overflow:hidden}
+.fv-glow1{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(0,212,255,0.12) 0%,transparent 70%);top:-80px;right:-80px}
+.fv-glow2{position:absolute;width:250px;height:250px;background:radial-gradient(circle,rgba(155,89,255,0.1) 0%,transparent 70%);bottom:-60px;left:-60px}
+.fv-top{position:relative;z-index:1}
+.fv-tag{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.25rem;opacity:0.7}
+.fv-chart-label{font-family:Space Mono,monospace;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:1rem}
+.fc-bars{display:flex;align-items:flex-end;gap:8px;height:130px;margin-bottom:1rem}
+.fc-bar{display:flex;flex-direction:column;align-items:center;flex:1;gap:5px}
+.fc-fill{width:100%;border-radius:3px 3px 0 0;position:relative;overflow:hidden}
+.fc-fill::after{content:"";position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,0.15),transparent)}
+.fc-pct{font-family:Space Mono,monospace;font-size:0.48rem;color:rgba(255,255,255,0.5);text-align:center}
+.fc-mode{font-family:Space Mono,monospace;font-size:0.44rem;color:rgba(255,255,255,0.25);text-align:center;line-height:1.3;margin-top:3px}
+.fv-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative;z-index:1}
+.fk{background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.12);border-radius:10px;padding:0.8rem;text-align:center;transition:all .3s}
+.feat-card:hover .fk{background:rgba(0,212,255,0.1);border-color:rgba(0,212,255,0.2)}
+.fk-n{font-family:Syne,sans-serif;font-size:1.4rem;font-weight:800;display:block;line-height:1;margin-bottom:0.2rem}
+.fk-l{font-family:Space Mono,monospace;font-size:0.46rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;display:block}
+.feat-body{padding:3.5rem 3rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.feat-status{display:inline-flex;align-items:center;gap:0.5rem;font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);background:rgba(0,255,157,0.08);border:1px solid rgba(0,255,157,0.2);padding:0.3rem 0.8rem;border-radius:50px;margin-bottom:1.25rem;width:fit-content}
+.feat-status::before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
+.feat-num{font-family:Space Mono,monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:0.5rem}
+.feat-title{font-family:Syne,sans-serif;font-size:1.85rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1.1;margin-bottom:1rem}
+.feat-desc{font-size:0.88rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem}
+.feat-findings{list-style:none;margin-bottom:1.75rem}
+.feat-findings li{display:flex;gap:0.6rem;font-size:0.83rem;color:var(--muted);padding:0.5rem 0;border-bottom:1px solid var(--border);line-height:1.5}
+.feat-findings li span{color:var(--cyan);flex-shrink:0;font-size:0.9rem}
+.feat-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.75rem}
+.ftag{padding:0.25rem 0.7rem;background:var(--glass2);border:1px solid var(--border2);border-radius:50px;font-family:Space Mono,monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.04em}
+.feat-cta{display:flex;align-items:center;gap:0.75rem;font-family:Syne,sans-serif;font-size:0.88rem;font-weight:700;color:var(--cyan)}
+.feat-arrow{display:inline-flex;width:38px;height:38px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));border-radius:50%;align-items:center;justify-content:center;color:#05070F;font-size:1rem;transition:all .3s;flex-shrink:0}
+.feat-card:hover .feat-arrow{transform:translateX(5px);box-shadow:0 0 20px rgba(0,212,255,0.4)}
+
+/* SMALL CARDS */
+.small-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.sm-card{background:var(--panel);border:1px solid var(--border2);border-radius:20px;overflow:hidden;transition:all .35s;position:relative}
+.sm-card.live{cursor:pointer}
+.sm-card.live:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.25);box-shadow:0 0 40px rgba(0,212,255,0.08),0 24px 50px rgba(0,0,0,0.4)}
+.sm-visual{height:180px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden}
+.sm-body{padding:1.5rem 1.5rem 1.5rem}
+.sm-tool{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;display:block;font-weight:500}
+.sm-title{font-family:Syne,sans-serif;font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;line-height:1.2}
+.sm-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.sm-footer{display:flex;justify-content:space-between;align-items:center;padding-top:0.75rem;border-top:1px solid var(--border)}
+.sm-tags{display:flex;gap:0.3rem;flex-wrap:wrap}
+.sm-tag{padding:0.15rem 0.5rem;background:var(--glass);border:1px solid var(--border2);border-radius:50px;font-family:Space Mono,monospace;font-size:0.52rem;color:var(--muted)}
+.cs-badge{font-family:Space Mono,monospace;font-size:0.56rem;color:var(--muted);letter-spacing:0.06em}
+.live-b{display:inline-flex;align-items:center;gap:0.3rem;font-family:Space Mono,monospace;font-size:0.58rem;color:var(--green);letter-spacing:0.06em}
+.live-b::before{content:"";width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+
+/* ABOUT */
+.about-section{background:var(--bg2);padding:7rem 4rem 7rem 5.5rem;border-top:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.about-name{font-family:Syne,sans-serif;font-size:2.8rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:0.5rem;line-height:1;background:linear-gradient(135deg,#fff,rgba(255,255,255,0.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.about-role{font-family:Space Mono,monospace;font-size:0.68rem;color:var(--cyan);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2rem;opacity:0.7}
+.about-bio{font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:2rem}
+.about-bio strong{color:var(--text);font-weight:600}
+.edu-item{padding:1rem 0;border-bottom:1px solid var(--border)}
+.edu-deg{font-weight:600;font-size:0.9rem;color:var(--text)}
+.edu-sch{font-family:Space Mono,monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.06em;margin-top:0.25rem}
+.skill-bars{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem}
+.sb-item label{display:flex;justify-content:space-between;font-size:0.84rem;color:var(--text);margin-bottom:0.45rem;font-weight:500}
+.sb-item label span{font-size:0.68rem;color:var(--muted);font-weight:300;font-family:Space Mono,monospace}
+.sb-track{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.sb-fill{height:100%;border-radius:2px;position:relative;overflow:hidden}
+.sb-fill::after{content:"";position:absolute;right:0;top:0;width:8px;height:100%;background:rgba(255,255,255,0.5);border-radius:50%;filter:blur(3px)}
+.about-right{display:flex;flex-direction:column;gap:1.25rem}
+.skill-cat{background:var(--glass);border:1px solid var(--border2);border-radius:16px;padding:1.5rem;transition:all .3s}
+.skill-cat:hover{border-color:rgba(0,212,255,0.2);background:rgba(0,212,255,0.03)}
+.scat-title{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;opacity:0.8}
+.scat-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0.3rem}
+.scat-list li{font-size:0.83rem;color:var(--muted);padding:0.25rem 0;display:flex;align-items:center;gap:0.4rem}
+.scat-list li::before{content:"▸";color:var(--cyan);font-size:0.6rem;flex-shrink:0}
+
+/* CONTACT */
+.contact-section{padding:7rem 4rem 7rem 5.5rem;position:relative;overflow:hidden}
+.contact-orb{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(155,89,255,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.contact-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;text-align:center}
+.contact-title{font-family:Syne,sans-serif;font-size:clamp(3rem,6vw,5rem);font-weight:800;letter-spacing:-0.04em;margin-bottom:1rem;line-height:0.95}
+.contact-title .glow-text{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.contact-sub{font-size:0.95rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.8;max-width:480px;margin-left:auto;margin-right:auto}
+.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.contact-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),transparent)}
+.email-display{font-family:Space Mono,monospace;font-size:1rem;color:var(--cyan);margin-bottom:1.5rem;letter-spacing:0.05em}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-cta{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2rem;background:linear-gradient(135deg,var(--purple),var(--pink));color:white;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:Manrope,sans-serif;transition:all .3s;position:relative;overflow:hidden}
+.btn-cta:hover{transform:translateY(-3px);box-shadow:0 0 30px rgba(155,89,255,0.4)}
+.btn-outline2{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2rem;background:transparent;color:var(--text);border:1px solid var(--border2);border-radius:50px;font-size:0.85rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:Manrope,sans-serif;transition:all .3s}
+.btn-outline2:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 16px rgba(0,212,255,0.15)}
+
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 4rem 2rem 5.5rem;display:flex;justify-content:space-between;align-items:center}
+.fl{font-family:Syne,sans-serif;font-size:1rem;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fr{display:flex;gap:1.75rem}
+.fr a{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:all .2s}
+.fr a:hover{color:var(--cyan)}
+.fc{font-family:Space Mono,monospace;font-size:0.56rem;color:rgba(255,255,255,0.15);letter-spacing:0.08em}
+
+/* ===== PROJECT PAGE ===== */
+.proj-page{padding-top:3.8rem;padding-left:5rem}
+.ptopbar{position:sticky;top:0;z-index:200;background:rgba(5,7,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0.75rem 3.5rem;display:flex;align-items:center;gap:1.5rem}
+.ptb-back{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--muted);cursor:pointer;background:none;border:none;font-family:Manrope,sans-serif;font-weight:500;transition:color .2s}
+.ptb-back:hover{color:var(--cyan)}
+.ptb-sep{width:1px;height:1rem;background:var(--border2)}
+.ptb-title{font-size:0.84rem;font-weight:600;color:var(--text)}
+.ptb-pill{margin-left:auto;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#05070F;font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:50px;font-weight:700}
+
+.proj-hero{padding:5rem 3.5rem 4rem;background:var(--bg2);position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:50px 50px}
+.ph-glow1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,0.08) 0%,transparent 65%);top:-200px;right:-200px}
+.ph-glow2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(155,89,255,0.06) 0%,transparent 65%);bottom:-150px;left:-100px}
+.proj-hero-inner{position:relative;z-index:1;max-width:900px}
+.proj-eyebrow{font-family:Space Mono,monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.proj-eyebrow::before{content:"";width:2rem;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.proj-h1{font-family:Syne,sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:800;letter-spacing:-0.04em;line-height:0.95;margin-bottom:1.5rem}
+.proj-h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.proj-lead{font-size:1.05rem;color:var(--muted);max-width:700px;line-height:1.85;margin-bottom:3rem}
+.proj-meta-row{display:flex;gap:4rem;flex-wrap:wrap;padding:2rem 0;border-top:1px solid var(--border)}
+.pm-l{font-family:Space Mono,monospace;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem}
+.pm-v{font-size:0.92rem;font-weight:600;color:var(--text)}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+.kpi{padding:2rem 2.5rem;border-right:1px solid var(--border);background:var(--panel);transition:all .3s}
+.kpi:hover{background:rgba(0,212,255,0.03)}
+.kpi:last-child{border-right:none}
+.kpi-n{font-family:Syne,sans-serif;font-size:2.4rem;font-weight:800;display:block;line-height:1;margin-bottom:0.4rem}
+.kpi-l{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+
+/* WORKFLOW */
+.workflow-wrap{padding:3rem 3.5rem 0}
+.wf-sec-label{font-family:Space Mono,monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.wf-sec-label::before{content:"";width:2rem;height:1px;background:var(--cyan)}
+.workflow{display:flex;align-items:stretch;background:var(--panel);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.wf-step{flex:1;padding:2rem 1.5rem;border-right:1px solid var(--border);position:relative;transition:all .3s}
+.wf-step:last-child{border-right:none}
+.wf-step:hover{background:rgba(0,212,255,0.03)}
+.wf-arrow{position:absolute;right:-13px;top:50%;transform:translateY(-50%);width:26px;height:26px;background:linear-gradient(135deg,var(--cyan),var(--purple));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:#05070F;font-weight:700;z-index:2}
+.wf-ico{font-size:1.75rem;margin-bottom:0.75rem}
+.wf-tool{font-family:Space Mono,monospace;font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.35rem;opacity:0.7}
+.wf-name{font-family:Syne,sans-serif;font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0.4rem}
+.wf-desc{font-size:0.78rem;color:var(--muted);line-height:1.55}
+
+/* TABS */
+.tabs-section{padding:3rem 3.5rem}
+.tabs-head h2{font-family:Syne,sans-serif;font-size:1.75rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-bottom:0.4rem}
+.tabs-head p{font-size:0.87rem;color:var(--muted);margin-bottom:1.5rem}
+.tab-btns{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.tb{padding:0.55rem 1.3rem;border-radius:50px;border:1px solid var(--border2);background:var(--glass);color:var(--muted);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all .3s;font-family:Manrope,sans-serif;white-space:nowrap;backdrop-filter:blur(8px)}
+.tb:hover{border-color:rgba(0,212,255,0.3);color:var(--cyan);background:rgba(0,212,255,0.05)}
+.tb.act{background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(155,89,255,0.15));color:var(--text);border-color:rgba(0,212,255,0.3);font-weight:600}
+.tc-wrap{display:none}.tc-wrap.act{display:block}
+.frame{background:var(--panel);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:1.5rem;transition:all .3s}
+.frame:hover{border-color:rgba(0,212,255,0.2)}
+.fhd{background:rgba(255,255,255,0.02);padding:0.85rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.6rem}
+.fd{width:10px;height:10px;border-radius:50%}
+.ftt{font-family:Space Mono,monospace;font-size:0.68rem;color:var(--muted);margin-left:0.5rem;flex:1;letter-spacing:0.04em}
+.fpill{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#05070F;padding:0.2rem 0.7rem;border-radius:50px;font-weight:700}
+.fbody{padding:1.5rem;background:var(--bg3)}
+.fimg{width:100%;display:block;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+.fph{min-height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;color:var(--muted);font-family:Space Mono,monospace;font-size:0.78rem;background:var(--bg2);border-radius:12px;border:1px solid var(--border)}
+.fph-ico{font-size:2.5rem;opacity:0.2}
+.t2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.iframe-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--bg2)}
+.iframe-wrap iframe{width:100%;height:580px;border:none;display:block}
+.live-cta{display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1.5rem;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#05070F;border-radius:50px;font-size:0.82rem;font-weight:700;text-decoration:none;font-family:Manrope,sans-serif;transition:all .3s;margin-bottom:1.25rem}
+.live-cta:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(0,212,255,0.4)}
+
+/* FINDINGS */
+.findings-section{padding:3rem 3.5rem;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.findings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.fg{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;overflow:hidden;border-top:2px solid transparent;transition:all .3s}
+.fg:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.fg.c1{border-top-color:var(--red)}.fg.c1:hover{border-color:rgba(255,71,87,0.3)}
+.fg.c2{border-top-color:var(--cyan)}.fg.c2:hover{border-color:rgba(0,212,255,0.3)}
+.fg.c3{border-top-color:var(--amber)}.fg.c3:hover{border-color:rgba(255,184,48,0.3)}
+.fg.c4{border-top-color:var(--green)}.fg.c4:hover{border-color:rgba(0,255,157,0.3)}
+.fg-glow{position:absolute;width:200px;height:200px;border-radius:50%;top:-80px;right:-80px;opacity:0.08}
+.fg.c1 .fg-glow{background:var(--red)}.fg.c2 .fg-glow{background:var(--cyan)}.fg.c3 .fg-glow{background:var(--amber)}.fg.c4 .fg-glow{background:var(--green)}
+.fg-cat{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem}
+.fg.c1 .fg-cat{color:var(--red)}.fg.c2 .fg-cat{color:var(--cyan)}.fg.c3 .fg-cat{color:var(--amber)}.fg.c4 .fg-cat{color:var(--green)}
+.fg-num{font-family:Syne,sans-serif;font-size:3rem;font-weight:800;letter-spacing:-0.04em;line-height:1;margin-bottom:0.6rem;display:block}
+.fg.c1 .fg-num{background:linear-gradient(135deg,var(--red),#ff8f9a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fg.c2 .fg-num{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fg.c3 .fg-num{background:linear-gradient(135deg,var(--amber),#ffdc80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fg.c4 .fg-num{background:linear-gradient(135deg,var(--green),#80ffce);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fg-body{font-size:0.86rem;color:var(--muted);line-height:1.8}
+.fg-body strong{color:var(--text);font-weight:600}
+
+/* INSIGHTS */
+.insights-section{padding:3rem 3.5rem}
+.is-inner{background:var(--panel);border:1px solid var(--border);border-radius:24px;padding:3rem;position:relative;overflow:hidden}
+.is-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),var(--pink),transparent)}
+.is-glow{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(155,89,255,0.08) 0%,transparent 70%);top:-100px;right:-100px}
+.is-eyebrow{font-family:Space Mono,monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem;position:relative;z-index:1}
+.is-title{font-family:Syne,sans-serif;font-size:1.9rem;font-weight:800;color:var(--text);letter-spacing:-0.03em;margin-bottom:2rem;position:relative;z-index:1;line-height:1.1}
+.is-list{list-style:none;display:flex;flex-direction:column;gap:0;position:relative;z-index:1}
+.is-item{display:flex;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid var(--border)}
+.is-num{width:38px;height:38px;min-width:38px;background:linear-gradient(135deg,var(--purple),var(--pink));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:0.78rem;color:white;font-weight:700;flex-shrink:0;margin-top:0.1rem}
+.is-lbl{font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:0.3rem;font-family:Syne,sans-serif}
+.is-txt{font-size:0.85rem;color:var(--muted);line-height:1.8}
+.tableau-cta-box{background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(155,89,255,0.08));border:1px solid rgba(0,212,255,0.15);border-radius:16px;padding:2rem;margin-top:2rem;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.tcta-text .label{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.4rem;opacity:0.7}
+.tcta-text .title{font-family:Syne,sans-serif;font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:0.25rem}
+.tcta-text .sub{font-size:0.82rem;color:var(--muted)}
+
+/* Tools used */
+.tu-wrap{padding:2rem 3.5rem;border-top:1px solid var(--border);background:var(--bg2)}
+.tu-label{font-family:Space Mono,monospace;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.tu-chips{display:flex;flex-wrap:wrap;gap:0.6rem}
+.tuc{display:inline-flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;background:var(--glass2);border:1px solid var(--border2);border-radius:50px;font-size:0.82rem;color:var(--text);transition:all .3s}
+.tuc:hover{border-color:rgba(0,212,255,0.3);color:var(--cyan);background:rgba(0,212,255,0.05)}
+
+/* Proj links */
+.proj-links{padding:2rem 3.5rem;border-top:1px solid var(--border);display:flex;gap:0.75rem;flex-wrap:wrap;background:var(--panel)}
+.pl{display:inline-flex;align-items:center;gap:0.4rem;padding:0.65rem 1.4rem;border-radius:50px;font-size:0.82rem;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid var(--border2);background:var(--glass);color:var(--text);transition:all .3s;font-family:Manrope,sans-serif}
+.pl:hover{border-color:rgba(0,212,255,0.3);color:var(--cyan);transform:translateY(-2px)}
+.pl.pr{background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#05070F;border:none;font-weight:700}
+.pl.pr:hover{box-shadow:0 0 24px rgba(0,212,255,0.35)}
+.pl.em{background:linear-gradient(135deg,var(--purple),var(--pink));color:white;border:none;font-weight:700}
+.pl.em:hover{box-shadow:0 0 24px rgba(155,89,255,0.35)}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.fade-up.in{opacity:1;transform:translateY(0)}
+.fade-up:nth-child(2){transition-delay:.1s}
+.fade-up:nth-child(3){transition-delay:.2s}
+</style>
+</head>
+<body>
+
+<!-- SIDE NAV (home only) -->
+<div class="sidenav" id="sidenav">
+  <div class="sn-item active" onclick="gotoSec('hero-sec')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+    <div class="tooltip">Home</div>
+  </div>
+  <div class="sn-item" onclick="gotoSec('projects-sec')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    <div class="tooltip">Projects</div>
+  </div>
+  <div class="sn-item" onclick="gotoSec('about-sec')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div class="tooltip">About</div>
+  </div>
+  <div class="sn-item" onclick="gotoSec('contact-sec')">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <div class="tooltip">Contact</div>
+  </div>
+</div>
+
+<!-- TOP NAV -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem 1rem 5rem;background:rgba(5,7,15,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)">
+  <div style="font-family:Syne,sans-serif;font-size:1.1rem;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em" onclick="showPage('home')">CWN</div>
+  <div style="display:flex;gap:0.25rem;align-items:center">
+    <a href="#" onclick="showPage('home');gotoSec('projects-sec');return false" style="color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;transition:all .2s;font-family:Manrope,sans-serif">Projects</a>
+    <a href="#" onclick="showPage('home');gotoSec('about-sec');return false" style="color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;transition:all .2s;font-family:Manrope,sans-serif">About</a>
+    <a href="https://github.com/CW-star" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;transition:all .2s;font-family:Manrope,sans-serif">GitHub</a>
+    <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;transition:all .2s;font-family:Manrope,sans-serif">LinkedIn</a>
+    <a href="mailto:cynthiawanjiku750@gmail.com" style="background:linear-gradient(135deg,var(--cyan),var(--purple));color:#05070F;text-decoration:none;font-size:0.82rem;font-weight:700;padding:0.45rem 1.3rem;border-radius:50px;font-family:Manrope,sans-serif;letter-spacing:0.03em">Contact</a>
+  </div>
+</nav>
+
+<!-- ====== HOME ====== -->
+<div id="page-home" class="page active">
+<div class="home-wrap">
+
+  <div id="hero-sec" class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+    <div class="hero-inner">
+      <div class="hero-greeting">Business Analytics Portfolio</div>
+      <h1>
+        <span class="h1-name">Cynthia Wanjiku</span>
+        <span class="h1-accent">Ng'ang'a</span>
+      </h1>
+      <p class="hero-tagline">Graduate student at <strong>Montclair State University</strong> — I build end-to-end analytics that go from raw data to executive decisions. SQL · Python · Tableau · Power BI · Celonis.</p>
+      <div class="hero-btns">
+        <button class="btn-glow" onclick="showPage('p1')">Explore Project &#8594;</button>
+        <a href="mailto:cynthiawanjiku750@gmail.com" class="btn-outline-glow">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-n">180K+</span><span class="stat-l">Records Analyzed</span></div>
+        <div class="stat"><span class="stat-n">$1.6M</span><span class="stat-l">Revenue Gap Found</span></div>
+        <div class="stat"><span class="stat-n">5</span><span class="stat-l">SQL Diagnostics</span></div>
+        <div class="stat"><span class="stat-n">7+</span><span class="stat-l">Tools Mastered</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-band">
+    <div class="tb-label">Stack</div>
+    <div class="tb-scroll">
+      <span class="tc"><span class="tc-dot" style="background:var(--cyan)"></span>Python</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--purple)"></span>MySQL</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--pink)"></span>Tableau</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--amber)"></span>Power BI</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--green)"></span>Celonis</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--cyan)"></span>Excel</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--purple)"></span>Prophet</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--pink)"></span>pandas</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--green)"></span>scikit-learn</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--amber)"></span>Google Colab</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--cyan)"></span>GitHub</span>
+    </div>
+  </div>
+
+  <section id="projects-sec" class="projects-section">
+    <div class="sec-label">Featured Work</div>
+    <div class="sec-title">Projects that <em>answer</em><br/>real business questions</div>
+
+    <!-- FEATURED CARD -->
+    <div class="feat-card fade-up" onclick="showPage('p1')">
+      <div class="feat-visual">
+        <div class="fv-glow1"></div>
+        <div class="fv-glow2"></div>
+        <div class="fv-top">
+          <div class="fv-tag">Live Project · DataCo Global · 180,519 Orders</div>
+          <div class="fv-chart-label">Late Delivery Rate by Shipping Mode</div>
+          <div class="fc-bars">
+            <div class="fc-bar">
+              <div class="fc-fill" style="height:95%;background:linear-gradient(180deg,#FF4757,#C0392B)"></div>
+              <div class="fc-pct">95.3%</div>
+              <div class="fc-mode">First<br/>Class</div>
+            </div>
+            <div class="fc-bar">
+              <div class="fc-fill" style="height:77%;background:linear-gradient(180deg,#FF6B7A,#E84545)"></div>
+              <div class="fc-pct">76.6%</div>
+              <div class="fc-mode">Second<br/>Class</div>
+            </div>
+            <div class="fc-bar">
+              <div class="fc-fill" style="height:46%;background:linear-gradient(180deg,#FFB830,#E67E22)"></div>
+              <div class="fc-pct">45.7%</div>
+              <div class="fc-mode">Same<br/>Day</div>
+            </div>
+            <div class="fc-bar">
+              <div class="fc-fill" style="height:38%;background:linear-gradient(180deg,#00FF9D,#00CC7A)"></div>
+              <div class="fc-pct">38.1%</div>
+              <div class="fc-mode">Standard</div>
+            </div>
+          </div>
+        </div>
+        <div class="fv-kpis">
+          <div class="fk"><span class="fk-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">180K</span><span class="fk-l">Orders</span></div>
+          <div class="fk"><span class="fk-n" style="background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">$1.6M</span><span class="fk-l">Gap Found</span></div>
+          <div class="fk"><span class="fk-n" style="background:linear-gradient(135deg,var(--amber),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent">&#8722;56.5%</span><span class="fk-l">Demand Drop</span></div>
+        </div>
+      </div>
+      <div class="feat-body">
+        <div class="feat-status">Live &amp; Published</div>
+        <div class="feat-num">// Project 01</div>
+        <div class="feat-title">Supply Chain Demand Forecasting &amp; Process Gap Analysis</div>
+        <p class="feat-desc">End-to-end diagnostic of 180,519 global orders — from SQL failure detection to Prophet forecasting. Revealed a $1.6M revenue hole hiding inside a single month's data that no one had quantified before.</p>
+        <ul class="feat-findings">
+          <li><span>&#9670;</span>First Class shipping fails 95.3% of customers — yet remains profitable, creating a hidden trust timebomb</li>
+          <li><span>&#9670;</span>Prophet model revealed a $1.6M revenue gap from an Oct 2017 demand shock invisible in raw data</li>
+          <li><span>&#9670;</span>Computers sold at structural loss in Europe &amp; Pacific Asia — not discount-driven, pricing is wrong</li>
+          <li><span>&#9670;</span>Western Europe: 27,109 orders, 55.8% late delivery — largest volume market, worst performance</li>
+        </ul>
+        <div class="feat-tags">
+          <span class="ftag">Python</span><span class="ftag">MySQL</span><span class="ftag">Prophet</span><span class="ftag">Tableau</span><span class="ftag">Power BI</span><span class="ftag">Celonis</span>
+        </div>
+        <div class="feat-cta">Click to explore full project <div class="feat-arrow">&#8594;</div></div>
+      </div>
+    </div>
+
+    <div class="small-grid">
+      <div class="sm-card">
+        <div class="sm-visual" style="background:linear-gradient(135deg,#0a0520,#1a0a40)">
+          <div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(155,89,255,0.15) 0%,transparent 70%)"></div>
+          <span style="font-size:3rem;position:relative;z-index:1">&#128269;</span>
+        </div>
+        <div class="sm-body">
+          <span class="sm-tool" style="color:var(--purple)">SQL · PostgreSQL</span>
+          <div class="sm-title">Customer Churn Cohort Analysis</div>
+          <p class="sm-desc">Window functions, CTEs and cohort tables to find exactly where a SaaS company loses customers and build retention curves.</p>
+          <div class="sm-footer"><div class="sm-tags"><span class="sm-tag">SQL</span><span class="sm-tag">CTEs</span><span class="sm-tag">Cohort</span></div><span class="cs-badge">Coming soon</span></div>
+        </div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-visual" style="background:linear-gradient(135deg,#051a0f,#0a3020)">
+          <div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(0,255,157,0.12) 0%,transparent 70%)"></div>
+          <span style="font-size:3rem;position:relative;z-index:1">&#128202;</span>
+        </div>
+        <div class="sm-body">
+          <span class="sm-tool" style="color:var(--green)">Python · ML</span>
+          <div class="sm-title">RFM Customer Segmentation</div>
+          <p class="sm-desc">K-Means clustering on 5,000+ transactions — Champions, Loyal, At-Risk. A business brief, not just a model.</p>
+          <div class="sm-footer"><div class="sm-tags"><span class="sm-tag">Python</span><span class="sm-tag">scikit-learn</span><span class="sm-tag">K-Means</span></div><span class="cs-badge">Coming soon</span></div>
+        </div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-visual" style="background:linear-gradient(135deg,#100a00,#2a1a00)">
+          <div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(255,184,48,0.12) 0%,transparent 70%)"></div>
+          <span style="font-size:3rem;position:relative;z-index:1">&#128506;</span>
+        </div>
+        <div class="sm-body">
+          <span class="sm-tool" style="color:var(--amber)">Spatial Analytics</span>
+          <div class="sm-title">Urban Equity &amp; Transit Access</div>
+          <p class="sm-desc">Income vs transit density mapping. Identify underserved neighborhoods and model economic impacts of route changes.</p>
+          <div class="sm-footer"><div class="sm-tags"><span class="sm-tag">geopandas</span><span class="sm-tag">GIS</span><span class="sm-tag">Tableau</span></div><span class="cs-badge">Coming soon</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-sec" class="about-section">
+    <div class="about-grid">
+      <div>
+        <div class="sec-label" style="margin-bottom:1.25rem">About Me</div>
+        <div class="about-name">Cynthia<br/>Wanjiku<br/>Ng'ang'a</div>
+        <div class="about-role">Business Analytics · Montclair State University</div>
+        <p class="about-bio">Graduate student building practical analytics skills that create real business impact — <strong>SQL, Python, Tableau, Power BI, and Celonis process mining</strong>. Comfortable across industries from <strong>financial analysis and operations</strong> to <strong>supply chain and consulting</strong>. Actively seeking roles as a <strong>Business, Data, or Operations Analyst</strong>.</p>
+        <div class="edu-item"><div class="edu-deg">M.S. Business Analytics</div><div class="edu-sch">Montclair State University · In Progress</div></div>
+        <div class="edu-item"><div class="edu-deg">B.S. Urban Design &amp; Development</div><div class="edu-sch">Undergraduate · Completed</div></div>
+        <div class="skill-bars">
+          <div class="sb-item"><label>SQL <span>Advanced</span></label><div class="sb-track"><div class="sb-fill" style="width:88%;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div></div>
+          <div class="sb-item"><label>Tableau <span>Advanced</span></label><div class="sb-track"><div class="sb-fill" style="width:85%;background:linear-gradient(90deg,var(--purple),var(--pink))"></div></div></div>
+          <div class="sb-item"><label>Power BI <span>Intermediate</span></label><div class="sb-track"><div class="sb-fill" style="width:78%;background:linear-gradient(90deg,var(--pink),var(--amber))"></div></div></div>
+          <div class="sb-item"><label>Python <span>Intermediate</span></label><div class="sb-track"><div class="sb-fill" style="width:72%;background:linear-gradient(90deg,var(--amber),var(--green))"></div></div></div>
+          <div class="sb-item"><label>Excel <span>Advanced</span></label><div class="sb-track"><div class="sb-fill" style="width:90%;background:linear-gradient(90deg,var(--green),var(--cyan))"></div></div></div>
+          <div class="sb-item"><label>Celonis <span>Intermediate</span></label><div class="sb-track"><div class="sb-fill" style="width:70%;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div></div>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="skill-cat"><div class="scat-title">Analytics &amp; BI</div><ul class="scat-list"><li>Tableau Public</li><li>Power BI Service</li><li>Excel &amp; Power Query</li><li>Celonis Process Mining</li></ul></div>
+        <div class="skill-cat"><div class="scat-title">Programming</div><ul class="scat-list"><li>Python (pandas, Prophet)</li><li>SQL (MySQL)</li><li>Jupyter / Google Colab</li><li>GitHub</li></ul></div>
+        <div class="skill-cat"><div class="scat-title">Analysis Methods</div><ul class="scat-list"><li>Demand Forecasting</li><li>Cohort Analysis</li><li>Process Gap Analysis</li><li>Customer Segmentation</li></ul></div>
+        <div class="skill-cat"><div class="scat-title">Target Roles</div><ul class="scat-list"><li>Business Analyst</li><li>Data Analyst</li><li>Operations Analyst</li><li>Financial Analyst</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-sec" class="contact-section">
+    <div class="contact-orb"></div>
+    <div class="contact-inner">
+      <div class="sec-label" style="justify-content:center">Get In Touch</div>
+      <div class="contact-title">Let's build<br/>something <span class="glow-text">together</span></div>
+      <p class="contact-sub">Open to full-time analyst roles. Available immediately for consulting, supply chain, financial services, or any industry where data drives real decisions.</p>
+      <div class="contact-card">
+        <div class="email-display">&#9993; cynthiawanjiku750@gmail.com</div>
+        <div class="contact-btns">
+          <a href="mailto:cynthiawanjiku750@gmail.com" class="btn-cta">Send Email</a>
+          <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank" class="btn-outline2">LinkedIn Profile &#8599;</a>
+          <a href="https://github.com/CW-star" target="_blank" class="btn-outline2">GitHub &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fl">Cynthia Wanjiku Ng'ang'a</div>
+    <div class="fr">
+      <a href="https://github.com/CW-star" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a>
+      <a href="mailto:cynthiawanjiku750@gmail.com">Email</a>
+    </div>
+    <div class="fc">&#169; 2026 · Built with purpose</div>
+  </footer>
+</div>
+</div>
+
+<!-- ====== PROJECT 1 PAGE ====== -->
+<div id="page-p1" class="page proj-page">
+
+  <div class="ptopbar">
+    <button class="ptb-back" onclick="showPage('home')">&#8592; Back to Portfolio</button>
+    <div class="ptb-sep"></div>
+    <div class="ptb-title">Supply Chain Demand Forecasting</div>
+    <div class="ptb-pill">Python · SQL · Tableau · Power BI</div>
+  </div>
+
+  <div class="proj-hero">
+    <div class="ph-grid"></div>
+    <div class="ph-glow1"></div>
+    <div class="ph-glow2"></div>
+    <div class="proj-hero-inner">
+      <div class="proj-eyebrow">Project 01 · End-to-End Analytics · 180,519 Orders</div>
+      <div class="proj-h1">Supply Chain Demand<br/>Forecasting &amp; <em>Process</em><br/><em>Gap Analysis</em></div>
+      <p class="proj-lead">A complete diagnostic study of 180,519 global supply chain orders — SQL-powered failure detection, Facebook Prophet demand forecasting, and executive dashboards in both Tableau and Power BI. The headline finding: a $1.6M revenue gap hiding inside a single month's data that no one had measured before.</p>
+      <div class="proj-meta-row">
+        <div><div class="pm-l">Dataset</div><div class="pm-v">DataCo Global Supply Chain · Kaggle</div></div>
+        <div><div class="pm-l">Records</div><div class="pm-v">180,519 Orders</div></div>
+        <div><div class="pm-l">Period</div><div class="pm-v">Jan 2015 — Jan 2018</div></div>
+        <div><div class="pm-l">Tools</div><div class="pm-v">Python · MySQL · Tableau · Power BI</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">180,519</span><span class="kpi-l">Total orders analyzed</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--red)">95.3%</span><span class="kpi-l">First Class late delivery rate</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--amber)">&#8722;56.5%</span><span class="kpi-l">Demand collapse Oct 2017</span></div>
+    <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">$1.6M</span><span class="kpi-l">Revenue gap quantified</span></div>
+  </div>
+
+  <div class="workflow-wrap">
+    <div class="wf-sec-label">Analysis Workflow</div>
+    <div class="workflow">
+      <div class="wf-step"><div class="wf-ico">&#128230;</div><div class="wf-tool">Kaggle · Python</div><div class="wf-name">Data Loading</div><div class="wf-desc">180K rows via pandas. latin-1 encoding. Date parsing &amp; cleaning.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128202;</div><div class="wf-tool">Python · matplotlib</div><div class="wf-name">Exploration</div><div class="wf-desc">3 diagnostic charts: delivery rates, category profit, monthly trend.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128197;</div><div class="wf-tool">MySQL</div><div class="wf-name">SQL Diagnostics</div><div class="wf-desc">5 queries across region, shipping mode, product-level loss.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128200;</div><div class="wf-tool">Facebook Prophet</div><div class="wf-name">Forecasting</div><div class="wf-desc">6-month forecast surfaces $1.6M gap from Oct 2017 shock.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128193;</div><div class="wf-tool">Tableau · Power BI</div><div class="wf-name">Dashboards</div><div class="wf-desc">Two executive dashboards. Live Tableau link published to the web.</div></div>
+    </div>
+  </div>
+
+  <div class="tabs-section">
+    <div class="tabs-head">
+      <h2>Dashboards &amp; Full Analysis</h2>
+      <p>Explore each phase of the project — click the tabs to switch between Tableau live dashboard, Power BI report, Python charts, and SQL query results.</p>
+    </div>
+    <div class="tab-btns">
+      <button class="tb act" onclick="switchTab(event,'t1')">&#9654; Tableau — Live Dashboard</button>
+      <button class="tb" onclick="switchTab(event,'t2')">&#128208; Power BI Report</button>
+      <button class="tb" onclick="switchTab(event,'t3')">&#128013; Python Charts (5)</button>
+      <button class="tb" onclick="switchTab(event,'t4')">&#128451; SQL Results (5)</button>
+    </div>
+
+    <div id="tab-t1" class="tc-wrap act">
+      <div class="frame">
+        <div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">DataCo Global — Supply Chain Performance Dashboard · Tableau Public</span><span class="fpill">LIVE · INTERACTIVE</span></div>
+        <div class="fbody">
+          <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.7">Interact directly below — hover bars for tooltips, click regions to cross-filter, explore late delivery and demand patterns across all shipping modes and markets.</p>
+          <a href="https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard" target="_blank" class="live-cta">&#8599; Open Full Screen on Tableau Public</a>
+          <div class="iframe-wrap">
+            <iframe src="https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard?:embed=yes&:display_count=no&:showVizHome=no&:toolbar=yes" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <p style="font-size:0.73rem;color:var(--muted);margin-top:0.75rem;font-family:Space Mono,monospace;opacity:0.7">If the embed does not load, open the dashboard directly on Tableau Public using the button above.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-t2" class="tc-wrap">
+      <div class="frame">
+        <div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Supply Chain Performance · Power BI Service Report</span><span class="fpill">POWER BI</span></div>
+        <div class="fbody">
+          <p style="font-size:0.87rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.75">4 KPI cards · Demand timeline with Oct 2017 shock reference line · Late delivery breakdown by shipping mode · Profit vs loss by market. The demand cliff in October 2017 is unmistakable in the monthly order volume chart.</p>
+          <img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/dashboard/dashboard_powerbi.png" alt="Power BI Dashboard" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="fph" style="display:none"><div class="fph-ico">&#128208;</div><span>Upload dashboard_powerbi.png to the dashboard/ folder on GitHub to display here</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-t3" class="tc-wrap">
+      <div class="t2" style="margin-bottom:1.25rem">
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 01 · Diagnostic — Late Delivery &amp; Market Loss</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_01_supply_chain_diagnostic.png" alt="Chart 1" class="fimg" style="height:250px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:250px><div class=fph-ico>&#128202;</div><span>chart_01_supply_chain_diagnostic.png</span></div>'"/></div>
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 02 · Category Profitability Analysis</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_02_category_profitability.png" alt="Chart 2" class="fimg" style="height:250px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:250px><div class=fph-ico>&#128202;</div><span>chart_02_category_profitability.png</span></div>'"/></div>
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 03 · Monthly Trend 2015–2018</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_03_monthly_trend.png" alt="Chart 3" class="fimg" style="height:250px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:250px><div class=fph-ico>&#128202;</div><span>chart_03_monthly_trend.png</span></div>'"/></div>
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 04 · Prophet Forecast vs Actual Orders</span><span class="fpill">PROPHET</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_04_forecast_vs_actual.png" alt="Chart 4" class="fimg" style="height:250px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:250px><div class=fph-ico>&#128200;</div><span>chart_04_forecast_vs_actual.png</span></div>'"/></div>
+      </div>
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 05 · Revenue Gap After Demand Shock · Total Lost: $1,614,835</span><span class="fpill">PROPHET</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_05_revenue_gap.png" alt="Chart 5" class="fimg" onerror="this.outerHTML='<div class=fph><div class=fph-ico>&#128200;</div><span>chart_05_revenue_gap.png</span></div>'"/></div>
+    </div>
+
+    <div id="tab-t4" class="tc-wrap">
+      <div class="t2" style="margin-bottom:1.25rem">
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 1 · Late Delivery Rate by Shipping Mode</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query1_late_delivery_by_shipping_mode.png" alt="Q1" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query1_late_delivery_by_shipping_mode.png</span></div>'"/></div>
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 2 · Worst Performing Regions by Late Delivery</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query2_worst_regions_late_delivery.png" alt="Q2" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query2_worst_regions_late_delivery.png</span></div>'"/></div>
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 3 · Shipping Mode vs Region Combinations</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query3_shipping_mode_vs_region.png" alt="Q3" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query3_shipping_mode_vs_region.png</span></div>'"/></div>
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 4 · Monthly Order Volume — Demand Shock Visible</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query4_monthly_order_trend.png" alt="Q4" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query4_monthly_order_trend.png</span></div>'"/></div>
+      </div>
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 5 · Top 10 Loss-Making Orders · Computers Dominate</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query5_loss_making_orders.png" alt="Q5" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph><div class=fph-ico>&#128451;</div><span>query5_loss_making_orders.png</span></div>'"/></div>
+    </div>
+  </div>
+
+  <div class="findings-section">
+    <div class="sec-label">Key Findings</div>
+    <h2 style="font-family:Syne,sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-top:0.75rem">What the Data Reveals</h2>
+    <p style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">Four critical insights — each pointing to a specific, quantified, actionable lever.</p>
+    <div class="findings-grid">
+      <div class="fg c1"><div class="fg-glow"></div><div class="fg-cat">&#9888; Shipping Crisis</div><span class="fg-num">95.3%</span><p class="fg-body">First Class shipping — the most expensive option — has a <strong>95.3% late delivery rate across every market</strong>. Africa: 97%. Europe: 95.8%. Customers paying premium prices receive the worst service. Yet First Class remains profitable, creating a hidden long-term trust timebomb leadership cannot yet see in the P&amp;L.</p></div>
+      <div class="fg c2"><div class="fg-glow"></div><div class="fg-cat">&#128200; Demand Shock</div><span class="fg-num">Oct 2017</span><p class="fg-body">The Prophet model expected <strong>5,355 orders in October 2017</strong>. The actual figure was 2,255 — a 56.5% single-month collapse. Without the forecast model, this looks like gradual decline. With it, you see a precise event boundary, a date leadership can investigate, and a cause that can be identified.</p></div>
+      <div class="fg c3"><div class="fg-glow"></div><div class="fg-cat">&#128200; Revenue Gap</div><span class="fg-num">$1.6M</span><p class="fg-body">Across four post-shock months, the business lost <strong>$1,614,835 in expected revenue</strong>. November 2017: $411K gap. January 2018: monthly revenue at $332K — 68% below the pre-shock average of $1.04M. This is not an estimate. It is a modeled, month-by-month quantification.</p></div>
+      <div class="fg c4"><div class="fg-glow"></div><div class="fg-cat">&#128187; Structural Loss</div><span class="fg-num">Computers</span><p class="fg-body">9 of the 10 worst individual orders are Computers, with losses of <strong>&#8722;$2,255 to &#8722;$3,443 per order</strong> at discounts of only 0–12%. This is not a promotions problem. The product is priced or costed incorrectly. A pricing audit of this category is not optional — it is overdue.</p></div>
+    </div>
+  </div>
+
+  <div class="insights-section">
+    <div class="sec-label">My Insights</div>
+    <div class="is-inner">
+      <div class="is-glow"></div>
+      <div class="is-eyebrow">&#128161; My Insights from This Project</div>
+      <div class="is-title">What I Learned &amp;<br/>What the Data Told Me</div>
+      <ul class="is-list">
+        <li class="is-item"><div class="is-num">1</div><div><div class="is-lbl">What I set out to answer</div><div class="is-txt">I wanted to give supply chain leadership one complete picture: where are deliveries failing, what caused the 2017 revenue collapse, and which products are structurally unprofitable — not just describe the problem, but put a dollar amount on it.</div></div></li>
+        <li class="is-item"><div class="is-num">2</div><div><div class="is-lbl">What surprised me</div><div class="is-txt">The October 2017 demand shock was completely invisible in raw order data. Only when I overlaid the Prophet forecast against actuals did the gap become visible and quantifiable. Without the model, you see "orders declined." With it, you see a precise $1.6M hole with a start date and a growth trajectory.</div></div></li>
+        <li class="is-item"><div class="is-num">3</div><div><div class="is-lbl">The uncomfortable business finding</div><div class="is-txt">First Class generates profit despite failing 95% of its customers. The business has no short-term financial incentive to fix it — which means the problem will not fix itself. The right conversation is a customer lifetime value model that makes the long-term cost visible alongside the short-term margin numbers.</div></div></li>
+        <li class="is-item"><div class="is-num">4</div><div><div class="is-lbl">What I would do next</div><div class="is-txt">Connect to live order data, build a real-time late delivery alert triggered at 48 hours past SLA, and add a CLV model that converts the 95% late rate from a service metric into a dollar-denominated risk that the CFO can act on.</div></div></li>
+      </ul>
+      <div class="tableau-cta-box">
+        <div class="tcta-text">
+          <div class="label">Open in Tableau Public</div>
+          <div class="title">View Full Interactive Dashboard</div>
+          <div class="sub">Click bars to cross-filter · Hover for tooltips · Drill down by market or shipping mode</div>
+        </div>
+        <a href="https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard" target="_blank" class="btn-glow">VIEW ON TABLEAU PUBLIC &#8594;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tu-wrap">
+    <div class="tu-label">Tools &amp; Methods Used</div>
+    <div class="tu-chips">
+      <span class="tuc">&#128013; Python (pandas)</span>
+      <span class="tuc">&#128200; Facebook Prophet</span>
+      <span class="tuc">&#128451; MySQL</span>
+      <span class="tuc">&#128202; Tableau Public</span>
+      <span class="tuc">&#128208; Power BI Service</span>
+      <span class="tuc">&#9729;&#65039; Google Colab</span>
+      <span class="tuc">&#128025; GitHub</span>
+      <span class="tuc">&#128230; Kaggle</span>
+    </div>
+  </div>
+
+  <div class="proj-links">
+    <a href="https://github.com/CW-star/supply-chain-analytics" target="_blank" class="pl pr">GitHub Repository &#8594;</a>
+    <a href="https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard" target="_blank" class="pl">Live Tableau Dashboard &#8599;</a>
+    <a href="https://github.com/CW-star/supply-chain-analytics/blob/main/notebooks/01_data_exploration.ipynb" target="_blank" class="pl">Python Notebook 1 &#8594;</a>
+    <a href="https://github.com/CW-star/supply-chain-analytics/blob/main/notebooks/03_demand_forecast.ipynb" target="_blank" class="pl">Demand Forecast &#8594;</a>
+    <a href="https://github.com/CW-star/supply-chain-analytics/blob/main/sql/diagnostic_queries.sql" target="_blank" class="pl">SQL Queries &#8594;</a>
+    <a href="mailto:cynthiawanjiku750@gmail.com" class="pl em">&#9993; Contact Me</a>
+  </div>
+
+  <footer>
+    <div class="fl">Cynthia Wanjiku Ng'ang'a</div>
+    <div class="fr">
+      <a href="https://github.com/CW-star" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a>
+      <a href="mailto:cynthiawanjiku750@gmail.com">Email</a>
+    </div>
+    <div class="fc">&#169; 2026 · Built with purpose</div>
+  </footer>
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  var sidenav=document.getElementById('sidenav');
+  if(id==='home'){sidenav.style.display='flex';}else{sidenav.style.display='none';}
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function gotoSec(id){
+  setTimeout(function(){
+    var el=document.getElementById(id);
+    if(el)el.scrollIntoView({behavior:'smooth'});
+  },80);
+}
+function switchTab(e,id){
+  document.querySelectorAll('.tc-wrap').forEach(function(t){t.classList.remove('act');});
+  document.querySelectorAll('.tb').forEach(function(b){b.classList.remove('act');});
+  var el=document.getElementById('tab-'+id);
+  if(el)el.classList.add('act');
+  e.currentTarget.classList.add('act');
+}
+// Side nav active state
+var sections=['hero-sec','projects-sec','about-sec','contact-sec'];
+var snItems=document.querySelectorAll('.sn-item');
+window.addEventListener('scroll',function(){
+  var scrollY=window.scrollY;
+  sections.forEach(function(id,i){
+    var el=document.getElementById(id);
+    if(el){
+      var top=el.offsetTop-200;
+      var bot=top+el.offsetHeight;
+      if(scrollY>=top&&scrollY<bot){
+        snItems.forEach(function(s){s.classList.remove('active');});
+        if(snItems[i])snItems[i].classList.add('active');
+      }
+    }
+  });
+});
+// Fade up
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:0.06});
+document.querySelectorAll('.fade-up').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>
