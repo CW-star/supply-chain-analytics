@@ -394,7 +394,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 4re
 
     <!-- COMING SOON -->
     <div class="small-grid" style="margin-top:2rem">
-      <div class="sm-card"><div class="sm-visual" style="background:linear-gradient(135deg,#0a0520,#1a0a40)"><div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(155,89,255,0.15) 0%,transparent 70%)"></div><span style="font-size:3rem;position:relative;z-index:1">&#128202;</span></div><div class="sm-body"><span class="sm-tool" style="color:var(--green)">Python · ML</span><div class="sm-title">RFM Customer Segmentation</div><p class="sm-desc">K-Means clustering on 5,000+ transactions — Champions, Loyal, At-Risk. A business brief, not just a model.</p><div class="sm-footer"><div class="sm-tags"><span class="sm-tag">Python</span><span class="sm-tag">scikit-learn</span></div><span class="cs-badge">Coming soon</span></div></div></div>
+      <div class="sm-card"><div class="sm-visual" style="background:linear-gradient(135deg,#0a0520,#1a0a40)"><div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(155,89,255,0.15) 0%,transparent 70%)"></div><span style="font-size:3rem;position:relative;z-index:1">&#128202;</span></div><div class="sm-body"><span class="sm-tool" style="color:var(--green)">Python · ML</span><div class="sm-title">RFM Customer Segmentation</div><p class="sm-desc">K-Means clustering on 541,909 transactions — Champions are 20% of customers but drive 73.7% of revenue. Full segmentation with Python.</p><div class="sm-footer"><div class="sm-tags"><span class="sm-tag">Python</span><span class="sm-tag">K-Means</span><span class="sm-tag">scikit-learn</span></div><span class="live-b">LIVE</span></div></div></div>
       <div class="sm-card"><div class="sm-visual" style="background:linear-gradient(135deg,#100a00,#2a1a00)"><div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(255,184,48,0.12) 0%,transparent 70%)"></div><span style="font-size:3rem;position:relative;z-index:1">&#128506;</span></div><div class="sm-body"><span class="sm-tool" style="color:var(--amber)">Spatial Analytics</span><div class="sm-title">Urban Equity &amp; Transit Access</div><p class="sm-desc">Income vs transit density mapping. Identify underserved neighborhoods and model economic impacts.</p><div class="sm-footer"><div class="sm-tags"><span class="sm-tag">geopandas</span><span class="sm-tag">GIS</span></div><span class="cs-badge">Coming soon</span></div></div></div>
       <div class="sm-card"><div class="sm-visual" style="background:linear-gradient(135deg,#050a1a,#0a1530)"><div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(0,212,255,0.1) 0%,transparent 70%)"></div><span style="font-size:3rem;position:relative;z-index:1">&#128200;</span></div><div class="sm-body"><span class="sm-tool" style="color:var(--cyan)">Excel · Power Query</span><div class="sm-title">Real Estate Market Dashboard</div><p class="sm-desc">Price-to-income ratios by ZIP code. Identify affordability gaps and investment opportunities.</p><div class="sm-footer"><div class="sm-tags"><span class="sm-tag">Excel</span><span class="sm-tag">Tableau</span></div><span class="cs-badge">Coming soon</span></div></div></div>
     </div>
@@ -679,5 +679,129 @@ window.addEventListener('scroll',function(){
 var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.06});
 document.querySelectorAll('.fade-up').forEach(function(el){io.observe(el);});
 </script>
+
+<!-- PROJECT 3 PAGE -->
+<div id="page-p3" class="page proj-page">
+  <div class="ptopbar">
+    <button class="ptb-back" onclick="showPage('home')">&#8592; Back to Portfolio</button>
+    <div class="ptb-sep"></div>
+    <div class="ptb-title">RFM Customer Segmentation</div>
+    <div class="ptb-pill">Python &middot; K-Means &middot; scikit-learn</div>
+  </div>
+  <div class="proj-hero">
+    <div class="ph-grid"></div><div class="ph-glow1"></div><div class="ph-glow2"></div>
+    <div class="proj-hero-inner">
+      <div class="proj-eyebrow">Project 03 &middot; Machine Learning &middot; 541,909 Transactions</div>
+      <div class="proj-h1">RFM Customer<br/>Segmentation &amp; <em>K-Means</em><br/><em>Clustering</em></div>
+      <p class="proj-lead">An e-commerce company has 541,909 transactions but no map of its customers. This project builds a complete RFM scoring model using K-Means clustering to identify Champions, New/Promising, At-Risk, and Lost customers — and translates each segment into a precise marketing action plan.</p>
+      <div class="proj-meta-row">
+        <div><div class="pm-l">Dataset</div><div class="pm-v">UCI Online Retail II &middot; Kaggle</div></div>
+        <div><div class="pm-l">Transactions</div><div class="pm-v">541,909 after cleaning</div></div>
+        <div><div class="pm-l">Customers</div><div class="pm-v">5,878 unique customers</div></div>
+        <div><div class="pm-l">Tools</div><div class="pm-v">Python &middot; pandas &middot; scikit-learn &middot; K-Means</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">5,878</span><span class="kpi-l">Customers segmented</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--cyan)">$17.7M</span><span class="kpi-l">Total revenue analyzed</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--green)">73.7%</span><span class="kpi-l">Revenue from Champions</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--red)">33.6%</span><span class="kpi-l">Customers lost / inactive</span></div>
+  </div>
+  <div class="workflow-wrap">
+    <div class="wf-sec-label">Analysis Workflow</div>
+    <div class="workflow">
+      <div class="wf-step"><div class="wf-ico">&#128230;</div><div class="wf-tool">Kaggle &middot; Python</div><div class="wf-name">Data Loading</div><div class="wf-desc">541,909 rows. Remove cancellations, nulls, negative values. Parse dates.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128200;</div><div class="wf-tool">pandas</div><div class="wf-name">RFM Scoring</div><div class="wf-desc">Calculate Recency, Frequency, Monetary per customer. Log transform for skew.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#127760;</div><div class="wf-tool">scikit-learn</div><div class="wf-name">K-Means Clustering</div><div class="wf-desc">Silhouette scoring k=2-8. Force k=4 for business utility. StandardScaler.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#127991;</div><div class="wf-tool">pandas</div><div class="wf-name">Segment Labeling</div><div class="wf-desc">Champions, New/Promising, At-Risk, Lost. Revenue share per segment.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128202;</div><div class="wf-tool">matplotlib</div><div class="wf-name">Visualizations</div><div class="wf-desc">4 charts: overview, 3D scatter, radar profiles, marketing action matrix.</div></div>
+    </div>
+  </div>
+  <div class="tabs-section">
+    <div class="tabs-head">
+      <h2>Charts &amp; Analysis</h2>
+      <p>Four visualizations telling the complete customer segmentation story.</p>
+    </div>
+    <div class="tab-btns">
+      <button class="tb act" onclick="switchTab(event,'r1')">&#128202; Segment Overview</button>
+      <button class="tb" onclick="switchTab(event,'r2')">&#127760; 3D Cluster Space</button>
+      <button class="tb" onclick="switchTab(event,'r3')">&#127881; RFM Radar Profiles</button>
+      <button class="tb" onclick="switchTab(event,'r4')">&#127919; Marketing Action Plan</button>
+    </div>
+    <div id="tab-r1" class="tc-wrap act">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Segment Overview &middot; Customer Distribution &middot; Revenue &middot; Key Numbers</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/rfm-customer-segmentation/main/visuals/chart_01_segment_overview.png" alt="Segment Overview" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#128202;</div><span>chart_01_segment_overview.png</span></div></div>
+    </div>
+    <div id="tab-r2" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">RFM Segments in 3D Space &middot; Recency &middot; Frequency &middot; Monetary</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/rfm-customer-segmentation/main/visuals/chart_02_3d_scatter.png" alt="3D Scatter" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127760;</div><span>chart_02_3d_scatter.png</span></div></div>
+    </div>
+    <div id="tab-r3" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">RFM Profile by Segment &middot; Radar Chart</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/rfm-customer-segmentation/main/visuals/chart_03_radar_profiles.png" alt="Radar Profiles" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127881;</div><span>chart_03_radar_profiles.png</span></div></div>
+    </div>
+    <div id="tab-r4" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Recency vs Monetary &middot; Marketing Action Plan by Segment</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/rfm-customer-segmentation/main/visuals/chart_04_action_matrix.png" alt="Action Matrix" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127919;</div><span>chart_04_action_matrix.png</span></div></div>
+    </div>
+  </div>
+  <div class="findings-section">
+    <div class="sec-label">Key Findings</div>
+    <h2 style="font-family:Syne,sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-top:0.75rem">What the Segmentation Reveals</h2>
+    <p style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">Four segments with dramatically different revenue profiles and retention needs.</p>
+    <div class="findings-grid">
+      <div class="fg c2"><div class="fg-glow"></div><div class="fg-cat">&#9733; Champions</div><span class="fg-num">73.7%</span><p class="fg-body">Champions are just <strong>20.2% of customers</strong> but generate <strong>$13.1M — 73.7% of all revenue</strong>. Average spend: $11,014. Last purchase: 27 days ago. Losing one Champion costs more than acquiring 13 new customers. These must be protected at all cost.</p></div>
+      <div class="fg c3"><div class="fg-glow"></div><div class="fg-cat">&#9888; At-Risk</div><span class="fg-num">228 days</span><p class="fg-body">1,465 customers who used to buy regularly are now <strong>228 days silent</strong>. They represent <strong>$2.9M in annual revenue</strong> that is actively slipping away. These customers already know the brand — a targeted reactivation campaign has the highest ROI of any marketing action.</p></div>
+      <div class="fg c4"><div class="fg-glow"></div><div class="fg-cat">&#128200; New / Promising</div><span class="fg-num">$865</span><p class="fg-body">1,251 recent customers averaging just $865 — but they bought <strong>28 days ago</strong>, the same recency as Champions. The difference is frequency. <strong>The goal: convert these into Champions</strong> through onboarding, product education, and the first upsell before they go cold.</p></div>
+      <div class="fg c1"><div class="fg-glow"></div><div class="fg-cat">&#128148; Lost / Inactive</div><span class="fg-num">396 days</span><p class="fg-body">1,974 customers — <strong>33.6% of the base</strong> — last purchased 396 days ago and spend only $326 on average. They generate 3.6% of revenue. A last-chance reactivation campaign makes sense; if there is no response, <strong>reallocating that marketing spend to Champions and At-Risk yields 10x better ROI</strong>.</p></div>
+    </div>
+  </div>
+  <div class="insights-section">
+    <div class="sec-label">My Insights</div>
+    <div class="is-inner">
+      <div class="is-glow"></div>
+      <div class="is-eyebrow">&#128161; My Insights from This Project</div>
+      <div class="is-title">What I Learned &amp;<br/>What the Model Told Me</div>
+      <ul class="is-list">
+        <li class="is-item"><div class="is-num">1</div><div><div class="is-lbl">Why RFM over pure ML</div><div class="is-txt">K-Means on raw RFM values produced mathematically clean clusters that map directly to business actions. This is more valuable than a black-box model with higher accuracy — a marketing team can understand "Champion" and act on it immediately.</div></div></li>
+        <li class="is-item"><div class="is-num">2</div><div><div class="is-lbl">The 73.7% finding changes the budget conversation</div><div class="is-txt">Before this analysis, marketing spend was presumably distributed somewhat evenly across the customer base. After it, the conversation shifts: 73.7% of revenue is concentrated in 20% of customers. Protecting those 1,188 Champions should absorb a disproportionate share of the retention budget.</div></div></li>
+        <li class="is-item"><div class="is-num">3</div><div><div class="is-lbl">New vs Promising is the hidden opportunity</div><div class="is-txt">The New/Promising segment bought just 28 days ago — the same recency as Champions. The only difference is frequency. This means the onboarding window is still open. A structured 60-day email sequence targeting this segment has an outsized expected return.</div></div></li>
+        <li class="is-item"><div class="is-num">4</div><div><div class="is-lbl">What I would do next</div><div class="is-txt">Add a predictive churn probability score to each customer using logistic regression, connect to a CRM via API, and build a live dashboard that flags when a Champion's recency score starts degrading — before they become At-Risk.</div></div></li>
+      </ul>
+    </div>
+  </div>
+  <div class="tu-wrap">
+    <div class="tu-label">Tools &amp; Methods Used</div>
+    <div class="tu-chips">
+      <span class="tuc">&#128013; Python (pandas, numpy)</span>
+      <span class="tuc">&#127760; scikit-learn K-Means</span>
+      <span class="tuc">&#128200; StandardScaler</span>
+      <span class="tuc">&#128202; matplotlib 3D</span>
+      <span class="tuc">&#127881; Radar Charts</span>
+      <span class="tuc">&#9733; RFM Scoring Framework</span>
+      <span class="tuc">&#9729;&#65039; Google Colab</span>
+      <span class="tuc">&#128025; GitHub</span>
+    </div>
+  </div>
+  <div class="proj-links">
+    <a href="https://github.com/CW-star/rfm-customer-segmentation" target="_blank" class="pl pr">GitHub Repository &#8594;</a>
+    <a href="https://github.com/CW-star/rfm-customer-segmentation/blob/main/notebooks/01_rfm_segmentation.ipynb" target="_blank" class="pl">Python Notebook &#8594;</a>
+    <a href="mailto:cynthiawanjiku750@gmail.com" class="pl em">&#9993; Contact Me</a>
+  </div>
+  <footer>
+    <div class="fl">Cynthia Wanjiku Ng'ang'a</div>
+    <div class="fr">
+      <a href="https://github.com/CW-star" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a>
+      <a href="mailto:cynthiawanjiku750@gmail.com">Email</a>
+    </div>
+    <div class="fc">&#169; 2026 &middot; Built with purpose</div>
+  </footer>
+</div>
 </body>
 </html>
