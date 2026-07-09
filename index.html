@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cynthia Wanjiku Ng'ang'a — Business Analytics Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#05070F;--bg2:#080D1A;--bg3:#0C1220;--panel:#0F1628;--glass:rgba(255,255,255,0.03);--glass2:rgba(255,255,255,0.06);--cyan:#00D4FF;--cyan2:#00A8CC;--purple:#9B59FF;--purple2:#7B3FE4;--pink:#FF3CAC;--green:#00FF9D;--amber:#FFB830;--red:#FF4757;--text:#E8EEFF;--muted:#6B7FA8;--border:rgba(0,212,255,0.08);--border2:rgba(255,255,255,0.06)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Manrope,sans-serif;font-weight:400;overflow-x:hidden;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 0%,rgba(0,212,255,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 100%,rgba(155,89,255,0.06) 0%,transparent 60%);pointer-events:none;z-index:0}
+.sidenav{position:fixed;left:1.5rem;top:50%;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;align-items:center;gap:0.75rem;background:rgba(8,13,26,0.7);backdrop-filter:blur(20px);border:1px solid var(--border2);border-radius:50px;padding:1.25rem 0.6rem}
+.sn-item{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;color:var(--muted);font-size:1rem;position:relative;background:transparent;border:none}
+.sn-item:hover,.sn-item.active{background:rgba(0,212,255,0.12);color:var(--cyan);box-shadow:0 0 16px rgba(0,212,255,0.2)}
+.sn-item .tip{position:absolute;left:calc(100% + 0.75rem);background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.75rem;font-size:0.72rem;font-family:Space Mono,monospace;color:var(--cyan);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;letter-spacing:0.05em}
+.sn-item:hover .tip{opacity:1}
+.page{display:none;position:relative;z-index:1}.page.active{display:block}
+.home-wrap{padding-left:5rem}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 4rem;position:relative;overflow:hidden}
+.hero-orb1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,0.08) 0%,transparent 70%);top:-200px;left:-200px;pointer-events:none;animation:drift1 8s ease-in-out infinite}
+.hero-orb2{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(155,89,255,0.08) 0%,transparent 70%);bottom:-200px;right:-200px;pointer-events:none;animation:drift2 10s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,-40px)}}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.hero-greeting{font-family:Space Mono,monospace;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+.hero-greeting::before,.hero-greeting::after{content:"";flex:1;max-width:4rem;height:1px}
+.hero-greeting::before{background:linear-gradient(90deg,transparent,var(--cyan))}
+.hero-greeting::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+h1{font-family:Syne,sans-serif;font-size:clamp(3.5rem,7vw,7rem);font-weight:800;line-height:0.95;letter-spacing:-0.04em;margin-bottom:1.75rem}
+.h1-name{background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.7) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h1-accent{background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.hero-tagline{font-size:0.95rem;color:var(--muted);max-width:580px;margin:0 auto 2.5rem;line-height:1.85}
+.hero-tagline strong{color:var(--text)}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem}
+.btn-glow{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#05070F;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:Manrope,sans-serif;transition:all .3s;letter-spacing:0.04em}
+.btn-glow:hover{transform:translateY(-3px);box-shadow:0 0 30px rgba(0,212,255,0.4)}
+.btn-outline-glow{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.15);border-radius:50px;font-size:0.85rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:Manrope,sans-serif;transition:all .3s;backdrop-filter:blur(8px)}
+.btn-outline-glow:hover{border-color:var(--purple);color:var(--purple);transform:translateY(-2px);box-shadow:0 0 20px rgba(155,89,255,0.2)}
+.hero-stats{display:flex;justify-content:center;gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--glass);backdrop-filter:blur(20px)}
+.stat{padding:1.5rem 3rem;position:relative}
+.stat::after{content:"";position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border2)}
+.stat:last-child::after{display:none}
+.stat-n{font-family:Syne,sans-serif;font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;line-height:1}
+.stat-l{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;display:block}
+.tools-band{background:rgba(8,13,26,0.8);backdrop-filter:blur(20px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 4rem 1.5rem 6rem;display:flex;align-items:center;gap:3rem;overflow:hidden}
+.tb-label{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex-shrink:0}
+.tb-scroll{display:flex;gap:0.6rem;flex-wrap:wrap}
+.tc{display:inline-flex;align-items:center;gap:0.4rem;padding:0.32rem 0.85rem;background:var(--glass2);border:1px solid var(--border2);border-radius:50px;font-family:Space Mono,monospace;font-size:0.62rem;color:var(--muted);transition:all .3s;cursor:default;letter-spacing:0.04em}
+.tc:hover{border-color:rgba(0,212,255,0.3);color:var(--cyan);background:rgba(0,212,255,0.05);box-shadow:0 0 12px rgba(0,212,255,0.1)}
+.tc-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.projects-section{padding:7rem 4rem 7rem 5.5rem}
+.sec-label{font-family:Space Mono,monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem}
+.sec-label::before{content:"";width:2rem;height:1px;background:var(--cyan)}
+.sec-title{font-family:Syne,sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:4rem;line-height:1.05}
+.sec-title em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.feat-card{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:24px;overflow:hidden;cursor:pointer;transition:all .4s;margin-bottom:2rem;background:var(--panel);position:relative}
+.feat-card:hover{transform:translateY(-8px);border-color:rgba(0,212,255,0.3);box-shadow:0 0 60px rgba(0,212,255,0.1),0 40px 80px rgba(0,0,0,0.4)}
+.feat-visual{background:var(--bg3);padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;min-height:420px;position:relative;overflow:hidden}
+.fv-glow1{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(0,212,255,0.12) 0%,transparent 70%);top:-80px;right:-80px}
+.fv-glow2{position:absolute;width:250px;height:250px;background:radial-gradient(circle,rgba(155,89,255,0.1) 0%,transparent 70%);bottom:-60px;left:-60px}
+.fv-top{position:relative;z-index:1}
+.fv-tag{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.25rem;opacity:0.7}
+.fv-chart-label{font-family:Space Mono,monospace;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:1rem}
+.fc-bars{display:flex;align-items:flex-end;gap:8px;height:130px;margin-bottom:1rem}
+.fc-bar{display:flex;flex-direction:column;align-items:center;flex:1;gap:5px}
+.fc-fill{width:100%;border-radius:3px 3px 0 0;position:relative;overflow:hidden}
+.fc-fill::after{content:"";position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,0.15),transparent)}
+.fc-pct{font-family:Space Mono,monospace;font-size:0.48rem;color:rgba(255,255,255,0.5);text-align:center}
+.fc-mode{font-family:Space Mono,monospace;font-size:0.44rem;color:rgba(255,255,255,0.25);text-align:center;line-height:1.3;margin-top:3px}
+.fv-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative;z-index:1}
+.fk{background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.12);border-radius:10px;padding:0.8rem;text-align:center;transition:all .3s}
+.feat-card:hover .fk{background:rgba(0,212,255,0.1);border-color:rgba(0,212,255,0.2)}
+.fk-n{font-family:Syne,sans-serif;font-size:1.4rem;font-weight:800;display:block;line-height:1;margin-bottom:0.2rem}
+.fk-l{font-family:Space Mono,monospace;font-size:0.46rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;display:block}
+.feat-body{padding:3.5rem 3rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.feat-status{display:inline-flex;align-items:center;gap:0.5rem;font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);background:rgba(0,255,157,0.08);border:1px solid rgba(0,255,157,0.2);padding:0.3rem 0.8rem;border-radius:50px;margin-bottom:1.25rem;width:fit-content}
+.feat-status::before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(46,139,116,0.6)}50%{box-shadow:0 0 0 6px rgba(46,139,116,0)}}
+.feat-num{font-family:Space Mono,monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:0.5rem}
+.feat-title{font-family:Syne,sans-serif;font-size:1.85rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1.1;margin-bottom:1rem}
+.feat-desc{font-size:0.88rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem}
+.feat-findings{list-style:none;margin-bottom:1.75rem}
+.feat-findings li{display:flex;gap:0.6rem;font-size:0.83rem;color:var(--muted);padding:0.5rem 0;border-bottom:1px solid var(--border);line-height:1.5}
+.feat-findings li span{color:var(--cyan);flex-shrink:0}
+.feat-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.75rem}
+.ftag{padding:0.25rem 0.7rem;background:var(--glass2);border:1px solid var(--border2);border-radius:50px;font-family:Space Mono,monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.04em}
+.feat-cta{display:flex;align-items:center;gap:0.75rem;font-family:Syne,sans-serif;font-size:0.88rem;font-weight:700;color:var(--cyan)}
+.feat-arrow{display:inline-flex;width:38px;height:38px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));border-radius:50%;align-items:center;justify-content:center;color:#05070F;font-size:1rem;transition:all .3s;flex-shrink:0}
+.feat-card:hover .feat-arrow{transform:translateX(5px);box-shadow:0 0 20px rgba(0,212,255,0.4)}
+.small-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.sm-card{background:var(--panel);border:1px solid var(--border2);border-radius:20px;overflow:hidden;transition:all .35s;position:relative}
+.sm-card.live{cursor:pointer}
+.sm-card.live:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.25);box-shadow:0 0 40px rgba(0,212,255,0.08),0 24px 50px rgba(0,0,0,0.4)}
+.sm-visual{height:180px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden}
+.sm-body{padding:1.5rem}
+.sm-tool{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;display:block;font-weight:500}
+.sm-title{font-family:Syne,sans-serif;font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;line-height:1.2}
+.sm-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.sm-footer{display:flex;justify-content:space-between;align-items:center;padding-top:0.75rem;border-top:1px solid var(--border)}
+.sm-tags{display:flex;gap:0.3rem;flex-wrap:wrap}
+.sm-tag{padding:0.15rem 0.5rem;background:var(--glass);border:1px solid var(--border2);border-radius:50px;font-family:Space Mono,monospace;font-size:0.52rem;color:var(--muted)}
+.cs-badge{font-family:Space Mono,monospace;font-size:0.56rem;color:var(--muted);letter-spacing:0.06em}
+.live-b{display:inline-flex;align-items:center;gap:0.3rem;font-family:Space Mono,monospace;font-size:0.58rem;color:var(--green);letter-spacing:0.06em}
+.live-b::before{content:"";width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+.about-section{background:var(--bg2);padding:7rem 4rem 7rem 5.5rem;border-top:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.about-name{font-family:Syne,sans-serif;font-size:2.8rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:0.5rem;line-height:1;background:linear-gradient(135deg,#fff,rgba(255,255,255,0.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.about-role{font-family:Space Mono,monospace;font-size:0.68rem;color:var(--cyan);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2rem;opacity:0.7}
+.about-bio{font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:2rem}
+.about-bio strong{color:var(--text);font-weight:600}
+.edu-item{padding:1rem 0;border-bottom:1px solid var(--border)}
+.edu-deg{font-weight:600;font-size:0.9rem;color:var(--text)}
+.edu-sch{font-family:Space Mono,monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.06em;margin-top:0.25rem}
+.skill-bars{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem}
+.sb-item label{display:flex;justify-content:space-between;font-size:0.84rem;color:var(--text);margin-bottom:0.45rem;font-weight:500}
+.sb-item label span{font-size:0.68rem;color:var(--muted);font-weight:300;font-family:Space Mono,monospace}
+.sb-track{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.sb-fill{height:100%;border-radius:2px}
+.about-right{display:flex;flex-direction:column;gap:1.25rem}
+.skill-cat{background:var(--glass);border:1px solid var(--border2);border-radius:16px;padding:1.5rem;transition:all .3s}
+.skill-cat:hover{border-color:rgba(0,212,255,0.2);background:rgba(0,212,255,0.03)}
+.scat-title{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;opacity:0.8}
+.scat-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0.3rem}
+.scat-list li{font-size:0.83rem;color:var(--muted);padding:0.25rem 0;display:flex;align-items:center;gap:0.4rem}
+.scat-list li::before{content:"›";color:var(--cyan);font-size:0.9rem;flex-shrink:0;line-height:1}
+.contact-section{padding:7rem 4rem 7rem 5.5rem;position:relative;overflow:hidden}
+.contact-orb{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(155,89,255,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.contact-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;text-align:center}
+.contact-title{font-family:Syne,sans-serif;font-size:clamp(3rem,6vw,5rem);font-weight:800;letter-spacing:-0.04em;margin-bottom:1rem;line-height:0.95}
+.contact-title .glow-text{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.contact-sub{font-size:0.95rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.8;max-width:480px;margin-left:auto;margin-right:auto}
+.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.contact-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),transparent)}
+.email-display{font-family:Space Mono,monospace;font-size:1rem;color:var(--cyan);margin-bottom:1.5rem;letter-spacing:0.05em}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-cta{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2rem;background:linear-gradient(135deg,var(--purple),var(--pink));color:white;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:Manrope,sans-serif;transition:all .3s}
+.btn-cta:hover{transform:translateY(-3px);box-shadow:0 0 30px rgba(155,89,255,0.4)}
+.btn-outline2{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2rem;background:transparent;color:var(--text);border:1px solid var(--border2);border-radius:50px;font-size:0.85rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:Manrope,sans-serif;transition:all .3s}
+.btn-outline2:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 16px rgba(0,212,255,0.15)}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 4rem 2rem 5.5rem;display:flex;justify-content:space-between;align-items:center}
+.fl{font-family:Syne,sans-serif;font-size:1rem;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fr{display:flex;gap:1.75rem}
+.fr a{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:all .2s}
+.fr a:hover{color:var(--cyan)}
+.fc{font-family:Space Mono,monospace;font-size:0.56rem;color:rgba(255,255,255,0.15);letter-spacing:0.08em}
+.proj-page{padding-top:3.8rem;padding-left:5rem}
+.ptopbar{position:sticky;top:0;z-index:200;background:rgba(5,7,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0.75rem 3.5rem;display:flex;align-items:center;gap:1.5rem}
+.ptb-back{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--muted);cursor:pointer;background:none;border:none;font-family:Manrope,sans-serif;font-weight:500;transition:color .2s}
+.ptb-back:hover{color:var(--cyan)}
+.ptb-sep{width:1px;height:1rem;background:var(--border2)}
+.ptb-title{font-size:0.84rem;font-weight:600;color:var(--text)}
+.ptb-pill{margin-left:auto;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#05070F;font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:50px;font-weight:700}
+.proj-hero{padding:5rem 3.5rem 4rem;background:var(--bg2);position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:50px 50px}
+.ph-glow1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,0.08) 0%,transparent 65%);top:-200px;right:-200px}
+.ph-glow2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(155,89,255,0.06) 0%,transparent 65%);bottom:-150px;left:-100px}
+.proj-hero-inner{position:relative;z-index:1;max-width:900px}
+.proj-eyebrow{font-family:Space Mono,monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;opacity:0.8}
+.proj-eyebrow::before{content:"";width:2rem;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.proj-h1{font-family:Syne,sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:800;letter-spacing:-0.04em;line-height:0.95;margin-bottom:1.5rem}
+.proj-h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.proj-lead{font-size:1.05rem;color:var(--muted);max-width:700px;line-height:1.85;margin-bottom:3rem}
+.proj-meta-row{display:flex;gap:4rem;flex-wrap:wrap;padding:2rem 0;border-top:1px solid var(--border)}
+.pm-l{font-family:Space Mono,monospace;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem}
+.pm-v{font-size:0.92rem;font-weight:600;color:var(--text)}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+.kpi{padding:2rem 2.5rem;border-right:1px solid var(--border);background:var(--panel);transition:all .3s}
+.kpi:hover{background:rgba(0,212,255,0.03)}
+.kpi:last-child{border-right:none}
+.kpi-n{font-family:Syne,sans-serif;font-size:2.4rem;font-weight:800;display:block;line-height:1;margin-bottom:0.4rem}
+.kpi-l{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.workflow-wrap{padding:3rem 3.5rem 0}
+.wf-sec-label{font-family:Space Mono,monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.wf-sec-label::before{content:"";width:2rem;height:1px;background:var(--cyan)}
+.workflow{display:flex;align-items:stretch;background:var(--panel);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.wf-step{flex:1;padding:2rem 1.5rem;border-right:1px solid var(--border);position:relative;transition:all .3s}
+.wf-step:last-child{border-right:none}
+.wf-step:hover{background:rgba(0,212,255,0.03)}
+.wf-arrow{position:absolute;right:-13px;top:50%;transform:translateY(-50%);width:26px;height:26px;background:linear-gradient(135deg,var(--cyan),var(--purple));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:#05070F;font-weight:700;z-index:2}
+.wf-ico{font-size:1.75rem;margin-bottom:0.75rem}
+.wf-tool{font-family:Space Mono,monospace;font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.35rem;opacity:0.7}
+.wf-name{font-family:Syne,sans-serif;font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0.4rem}
+.wf-desc{font-size:0.78rem;color:var(--muted);line-height:1.55}
+.tabs-section{padding:3rem 3.5rem}
+.tabs-head h2{font-family:Syne,sans-serif;font-size:1.75rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-bottom:0.4rem}
+.tabs-head p{font-size:0.87rem;color:var(--muted);margin-bottom:1.5rem}
+.tab-btns{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.tb{padding:0.55rem 1.3rem;border-radius:50px;border:1px solid var(--border2);background:var(--glass);color:var(--muted);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all .3s;font-family:Manrope,sans-serif;white-space:nowrap;backdrop-filter:blur(8px)}
+.tb:hover{border-color:rgba(0,212,255,0.3);color:var(--cyan);background:rgba(0,212,255,0.05)}
+.tb.act{background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(155,89,255,0.15));color:var(--text);border-color:rgba(0,212,255,0.3);font-weight:600}
+.tc-wrap{display:none}.tc-wrap.act{display:block}
+.frame{background:var(--panel);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:1.5rem;transition:all .3s}
+.frame:hover{border-color:rgba(0,212,255,0.2)}
+.fhd{background:rgba(255,255,255,0.02);padding:0.85rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.6rem}
+.fd{width:10px;height:10px;border-radius:50%}
+.ftt{font-family:Space Mono,monospace;font-size:0.68rem;color:var(--muted);margin-left:0.5rem;flex:1;letter-spacing:0.04em}
+.fpill{font-family:Space Mono,monospace;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#05070F;padding:0.2rem 0.7rem;border-radius:50px;font-weight:700}
+.fbody{padding:1.5rem;background:var(--bg3)}
+.fimg{width:100%;display:block;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+.fph{min-height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;color:var(--muted);font-family:Space Mono,monospace;font-size:0.78rem;background:var(--bg2);border-radius:12px;border:1px solid var(--border)}
+.fph-ico{font-size:2.5rem;opacity:0.2}
+.t2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.iframe-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--bg2)}
+.iframe-wrap iframe{width:100%;height:580px;border:none;display:block}
+.live-cta{display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1.5rem;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#05070F;border-radius:50px;font-size:0.82rem;font-weight:700;text-decoration:none;font-family:Manrope,sans-serif;transition:all .3s;margin-bottom:1.25rem}
+.live-cta:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(0,212,255,0.4)}
+.findings-section{padding:3rem 3.5rem;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.findings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.fg{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;overflow:hidden;border-top:2px solid transparent;transition:all .3s}
+.fg:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.fg.c1{border-top-color:var(--red)}.fg.c1:hover{border-color:rgba(255,71,87,0.3)}
+.fg.c2{border-top-color:var(--cyan)}.fg.c2:hover{border-color:rgba(0,212,255,0.3)}
+.fg.c3{border-top-color:var(--amber)}.fg.c3:hover{border-color:rgba(255,184,48,0.3)}
+.fg.c4{border-top-color:var(--green)}.fg.c4:hover{border-color:rgba(0,255,157,0.3)}
+.fg-glow{position:absolute;width:200px;height:200px;border-radius:50%;top:-80px;right:-80px;opacity:0.08}
+.fg.c1 .fg-glow{background:var(--red)}.fg.c2 .fg-glow{background:var(--cyan)}.fg.c3 .fg-glow{background:var(--amber)}.fg.c4 .fg-glow{background:var(--green)}
+.fg-cat{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem}
+.fg.c1 .fg-cat{color:var(--red)}.fg.c2 .fg-cat{color:var(--cyan)}.fg.c3 .fg-cat{color:var(--amber)}.fg.c4 .fg-cat{color:var(--green)}
+.fg-num{font-family:Syne,sans-serif;font-size:3rem;font-weight:800;letter-spacing:-0.04em;line-height:1;margin-bottom:0.6rem;display:block}
+.fg.c1 .fg-num{background:linear-gradient(135deg,var(--red),#ff8f9a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fg.c2 .fg-num{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fg.c3 .fg-num{background:linear-gradient(135deg,var(--amber),#ffdc80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fg.c4 .fg-num{background:linear-gradient(135deg,var(--green),#80ffce);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.fg-body{font-size:0.86rem;color:var(--muted);line-height:1.8}
+.fg-body strong{color:var(--text);font-weight:600}
+.insights-section{padding:3rem 3.5rem}
+.is-inner{background:var(--panel);border:1px solid var(--border);border-radius:24px;padding:3rem;position:relative;overflow:hidden}
+.is-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),var(--pink),transparent)}
+.is-glow{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(155,89,255,0.08) 0%,transparent 70%);top:-100px;right:-100px}
+.is-eyebrow{font-family:Space Mono,monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem;position:relative;z-index:1}
+.is-title{font-family:Syne,sans-serif;font-size:1.9rem;font-weight:800;color:var(--text);letter-spacing:-0.03em;margin-bottom:2rem;position:relative;z-index:1;line-height:1.1}
+.is-list{list-style:none;display:flex;flex-direction:column;gap:0;position:relative;z-index:1}
+.is-item{display:flex;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid var(--border)}
+.is-num{width:38px;height:38px;min-width:38px;background:linear-gradient(135deg,var(--purple),var(--pink));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Space Mono,monospace;font-size:0.78rem;color:white;font-weight:700;flex-shrink:0;margin-top:0.1rem}
+.is-lbl{font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:0.3rem;font-family:Syne,sans-serif}
+.is-txt{font-size:0.85rem;color:var(--muted);line-height:1.8}
+.tableau-cta-box{background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(155,89,255,0.08));border:1px solid rgba(0,212,255,0.15);border-radius:16px;padding:2rem;margin-top:2rem;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.tcta-text .label{font-family:Space Mono,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.4rem;opacity:0.7}
+.tcta-text .title{font-family:Syne,sans-serif;font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:0.25rem}
+.tcta-text .sub{font-size:0.82rem;color:var(--muted)}
+.tu-wrap{padding:2rem 3.5rem;border-top:1px solid var(--border);background:var(--bg2)}
+.tu-label{font-family:Space Mono,monospace;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.tu-chips{display:flex;flex-wrap:wrap;gap:0.6rem}
+.tuc{display:inline-flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;background:var(--glass2);border:1px solid var(--border2);border-radius:50px;font-size:0.82rem;color:var(--text);transition:all .3s}
+.tuc:hover{border-color:rgba(0,212,255,0.3);color:var(--cyan);background:rgba(0,212,255,0.05)}
+.proj-links{padding:2rem 3.5rem;border-top:1px solid var(--border);display:flex;gap:0.75rem;flex-wrap:wrap;background:var(--panel)}
+.pl{display:inline-flex;align-items:center;gap:0.4rem;padding:0.65rem 1.4rem;border-radius:50px;font-size:0.82rem;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid var(--border2);background:var(--glass);color:var(--text);transition:all .3s;font-family:Manrope,sans-serif}
+.pl:hover{border-color:rgba(0,212,255,0.3);color:var(--cyan);transform:translateY(-2px)}
+.pl.pr{background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#05070F;border:none;font-weight:700}
+.pl.pr:hover{box-shadow:0 0 24px rgba(0,212,255,0.35)}
+.pl.em{background:linear-gradient(135deg,var(--purple),var(--pink));color:white;border:none;font-weight:700}
+.pl.em:hover{box-shadow:0 0 24px rgba(155,89,255,0.35)}
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.fade-up.in{opacity:1;transform:translateY(0)}
+
+@media (max-width:900px){
+  nav{padding:0.85rem 1.1rem !important}
+  .sidenav{display:none !important}
+  .hero{padding:5rem 1.25rem 3rem !important;min-height:auto}
+  .hero-stats{flex-wrap:wrap;gap:1rem}
+  .hero-stats>*{flex:1 1 45%}
+  .small-grid{grid-template-columns:1fr !important}
+  .feat-card{grid-template-columns:1fr !important}
+  .projects-section,.about-section,.findings-section,.tabs-section,.insights-section,.workflow-wrap,.tu-wrap{padding-left:1.25rem !important;padding-right:1.25rem !important}
+  .kpi-row{grid-template-columns:1fr 1fr !important}
+  .workflow{flex-direction:column !important}
+  .wf-arrow{display:none !important}
+  .findings-grid{grid-template-columns:1fr !important}
+  .proj-meta-row{flex-direction:column;gap:1.25rem !important}
+  .tab-btns{flex-wrap:wrap;gap:0.4rem}
+  .tb{font-size:0.72rem !important;padding:0.5rem 0.7rem !important}
+  .ptopbar{flex-wrap:wrap;gap:0.4rem;padding:0.7rem 1rem !important}
+  .about-grid{grid-template-columns:1fr !important;gap:2rem}
+  .impact-grid{grid-template-columns:1fr 1fr !important}
+}
+@media (max-width:480px){
+  .hero-stats>*{flex:1 1 100%}
+  .kpi-row,.impact-grid{grid-template-columns:1fr !important}
+}
+
+.impact-band{padding:5rem 4rem 1rem 5.5rem;border-top:1px solid var(--border)}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:2.25rem}
+.impact-card{background:var(--panel);border:1px solid var(--border2);border-radius:16px;padding:1.6rem 1.4rem;position:relative;overflow:hidden;transition:all .35s}
+.impact-card:hover{border-color:var(--border);transform:translateY(-4px)}
+.impact-card .icg{position:absolute;top:-40px;right:-40px;width:110px;height:110px;border-radius:50%;filter:blur(40px);opacity:0.22}
+.impact-num{font-family:Syne,sans-serif;font-size:2.4rem;font-weight:800;line-height:1;letter-spacing:-0.03em;position:relative;z-index:1}
+.impact-lbl{font-size:0.8rem;color:var(--text);font-weight:600;margin-top:0.55rem;position:relative;z-index:1}
+.impact-sub{font-size:0.7rem;color:var(--muted);margin-top:0.15rem;position:relative;z-index:1;font-family:Space Mono,monospace}
+</style>
+</head>
+<body>
+
+<div class="sidenav" id="sidenav">
+  <div class="sn-item active" onclick="gotoSec('hero-sec')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><div class="tip">Home</div></div>
+  <div class="sn-item" onclick="gotoSec('projects-sec')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><div class="tip">Projects</div></div>
+  <div class="sn-item" onclick="gotoSec('about-sec')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div class="tip">About</div></div>
+  <div class="sn-item" onclick="gotoSec('contact-sec')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div class="tip">Contact</div></div>
+</div>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem 1rem 5rem;background:rgba(5,7,15,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)">
+  <div style="font-family:Syne,sans-serif;font-size:1.1rem;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em" onclick="showPage('home')">CWN</div>
+  <div style="display:flex;gap:0.25rem;align-items:center">
+    <a href="#" onclick="showPage('home');gotoSec('projects-sec');return false" style="color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;transition:all .2s;font-family:Manrope,sans-serif">Projects</a>
+    <a href="#" onclick="showPage('home');gotoSec('about-sec');return false" style="color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;transition:all .2s;font-family:Manrope,sans-serif">About</a>
+    <a href="https://github.com/CW-star" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;font-family:Manrope,sans-serif">GitHub</a>
+    <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;font-family:Manrope,sans-serif">LinkedIn</a>
+    <a href="mailto:cynthiawanjiku750@gmail.com" style="background:linear-gradient(135deg,var(--cyan),var(--purple));color:#05070F;text-decoration:none;font-size:0.82rem;font-weight:700;padding:0.45rem 1.3rem;border-radius:50px;font-family:Manrope,sans-serif;letter-spacing:0.03em">Contact</a>
+  </div>
+</nav>
+
+<div id="page-home" class="page active">
+<div class="home-wrap">
+  <div id="hero-sec" class="hero">
+    <div class="hero-grid-bg"></div><div class="hero-orb1"></div><div class="hero-orb2"></div>
+    <div class="hero-inner">
+      <div class="hero-greeting">Business Analytics Portfolio</div>
+      <h1><span class="h1-name">Cynthia Wanjiku</span><span class="h1-accent">Ng'ang'a</span></h1>
+      <p class="hero-tagline">Graduate student at <strong>Montclair State University</strong> — building end-to-end analytics that go from raw data to executive decisions. SQL &middot; Python &middot; Tableau &middot; Power BI &middot; Celonis.</p>
+      <div class="hero-btns">
+        <button class="btn-glow" onclick="gotoSec('projects-sec')">View Projects &#8594;</button>
+        <a href="mailto:cynthiawanjiku750@gmail.com" class="btn-outline-glow">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-n">180K+</span><span class="stat-l">Records Analyzed</span></div>
+        <div class="stat"><span class="stat-n">$1.6M</span><span class="stat-l">Revenue Gap Found</span></div>
+        <div class="stat"><span class="stat-n">5</span><span class="stat-l">Live Projects</span></div>
+        <div class="stat"><span class="stat-n">7+</span><span class="stat-l">Tools Mastered</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-band">
+    <div class="tb-label">Stack</div>
+    <div class="tb-scroll">
+      <span class="tc"><span class="tc-dot" style="background:var(--cyan)"></span>Python</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--purple)"></span>MySQL</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--pink)"></span>Tableau</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--amber)"></span>Power BI</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--green)"></span>Celonis</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--cyan)"></span>Excel</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--purple)"></span>Prophet</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--pink)"></span>pandas</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--green)"></span>scikit-learn</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--amber)"></span>Google Colab</span>
+      <span class="tc"><span class="tc-dot" style="background:var(--cyan)"></span>GitHub</span>
+    </div>
+  </div>
+
+  <section id="impact-sec" class="impact-band">
+    <div class="sec-label">By the Numbers</div>
+    <div class="sec-title" style="font-size:clamp(2rem,4vw,3rem);margin-bottom:0.5rem">Five projects.<br/><em>One measurable impact.</em></div>
+    <p style="color:var(--muted);font-size:0.95rem;max-width:560px">Across supply chain, customer analytics, urban policy, and real estate — every project ends in a quantified, decision-ready finding.</p>
+    <div class="impact-grid">
+      <div class="impact-card"><div class="icg" style="background:var(--cyan)"></div><div class="impact-num" style="color:var(--cyan)">730K+</div><div class="impact-lbl">Records Analyzed</div><div class="impact-sub">across 5 datasets</div></div>
+      <div class="impact-card"><div class="icg" style="background:var(--purple)"></div><div class="impact-num" style="color:var(--purple)">$1.6M</div><div class="impact-lbl">Revenue Gap Surfaced</div><div class="impact-sub">supply chain forecast</div></div>
+      <div class="impact-card"><div class="icg" style="background:var(--red)"></div><div class="impact-num" style="color:var(--red)">$1.67M</div><div class="impact-lbl">Churn Revenue at Risk</div><div class="impact-sub">telecom cohort analysis</div></div>
+      <div class="impact-card"><div class="icg" style="background:var(--green)"></div><div class="impact-num" style="color:var(--green)">73.7%</div><div class="impact-lbl">Revenue from Champions</div><div class="impact-sub">RFM segmentation</div></div>
+      <div class="impact-card"><div class="icg" style="background:var(--amber)"></div><div class="impact-num" style="color:var(--amber)">r = 0.92</div><div class="impact-lbl">Transit-Income Link</div><div class="impact-sub">Chicago equity study</div></div>
+      <div class="impact-card"><div class="icg" style="background:var(--cyan)"></div><div class="impact-num" style="color:var(--cyan)">493</div><div class="impact-lbl">Housing Markets Scored</div><div class="impact-sub">price-to-income ratios</div></div>
+      <div class="impact-card"><div class="icg" style="background:var(--green)"></div><div class="impact-num" style="color:var(--green)">5</div><div class="impact-lbl">End-to-End Projects</div><div class="impact-sub">data to decision</div></div>
+      <div class="impact-card"><div class="icg" style="background:var(--purple)"></div><div class="impact-num" style="color:var(--purple)">7+</div><div class="impact-lbl">Tools &amp; Languages</div><div class="impact-sub">Python · SQL · Tableau</div></div>
+    </div>
+  </section>
+
+  <section id="projects-sec" class="projects-section">
+    <div class="sec-label">Featured Work</div>
+    <div class="sec-title">Projects that <em>answer</em><br/>real business questions</div>
+
+    <!-- PROJECT 1 CARD -->
+    <div class="feat-card fade-up" onclick="showPage('p1')">
+      <div class="feat-visual">
+        <div class="fv-glow1"></div><div class="fv-glow2"></div>
+        <div class="fv-top">
+          <div class="fv-tag">Live Project &middot; DataCo Global &middot; 180,519 Orders</div>
+          <div class="fv-chart-label">Late Delivery Rate by Shipping Mode</div>
+          <div class="fc-bars">
+            <div class="fc-bar"><div class="fc-fill" style="height:95%;background:linear-gradient(180deg,#FF4757,#C0392B)"></div><div class="fc-pct">95.3%</div><div class="fc-mode">First<br/>Class</div></div>
+            <div class="fc-bar"><div class="fc-fill" style="height:77%;background:linear-gradient(180deg,#FF6B7A,#E84545)"></div><div class="fc-pct">76.6%</div><div class="fc-mode">Second<br/>Class</div></div>
+            <div class="fc-bar"><div class="fc-fill" style="height:46%;background:linear-gradient(180deg,#FFB830,#E67E22)"></div><div class="fc-pct">45.7%</div><div class="fc-mode">Same<br/>Day</div></div>
+            <div class="fc-bar"><div class="fc-fill" style="height:38%;background:linear-gradient(180deg,#00FF9D,#00CC7A)"></div><div class="fc-pct">38.1%</div><div class="fc-mode">Standard</div></div>
+          </div>
+        </div>
+        <div class="fv-kpis">
+          <div class="fk"><span class="fk-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">180K</span><span class="fk-l">Orders</span></div>
+          <div class="fk"><span class="fk-n" style="background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">$1.6M</span><span class="fk-l">Gap Found</span></div>
+          <div class="fk"><span class="fk-n" style="background:linear-gradient(135deg,var(--amber),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent">&#8722;56.5%</span><span class="fk-l">Demand Drop</span></div>
+        </div>
+      </div>
+      <div class="feat-body">
+        <div class="feat-status">Live &amp; Published</div>
+        <div class="feat-num">// Project 01</div>
+        <div class="feat-title">Supply Chain Demand Forecasting &amp; Process Gap Analysis</div>
+        <p class="feat-desc">End-to-end diagnostic of 180,519 global orders. SQL failure detection, Prophet forecasting, and two executive dashboards. Revealed a $1.6M revenue hole hiding in a single month's data.</p>
+        <ul class="feat-findings">
+          <li><span>&#9670;</span>First Class shipping fails 95.3% of customers — yet remains profitable</li>
+          <li><span>&#9670;</span>Prophet model revealed $1.6M gap from Oct 2017 demand shock</li>
+          <li><span>&#9670;</span>Computers sold at structural loss — pricing problem, not discounting</li>
+          <li><span>&#9670;</span>Western Europe: 27K orders, 55.8% late rate — highest volume, worst service</li>
+        </ul>
+        <div class="feat-tags"><span class="ftag">Python</span><span class="ftag">MySQL</span><span class="ftag">Prophet</span><span class="ftag">Tableau</span><span class="ftag">Power BI</span></div>
+        <div class="feat-cta">Click to explore full project <div class="feat-arrow">&#8594;</div></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 CARD -->
+    <div class="feat-card fade-up" onclick="showPage('p2')" style="margin-top:2rem">
+      <div class="feat-visual" style="background:var(--bg3)">
+        <div class="fv-glow1" style="background:radial-gradient(circle,rgba(155,89,255,0.15) 0%,transparent 70%)"></div>
+        <div class="fv-glow2" style="background:radial-gradient(circle,rgba(255,60,172,0.1) 0%,transparent 70%)"></div>
+        <div class="fv-top">
+          <div class="fv-tag">SQL Analysis &middot; IBM Telco Dataset &middot; 7,043 Customers</div>
+          <div class="fv-chart-label">Churn Rate by Contract Type</div>
+          <div class="fc-bars">
+            <div class="fc-bar"><div class="fc-fill" style="height:85%;background:linear-gradient(180deg,#FF4757,#C0392B)"></div><div class="fc-pct">42.71%</div><div class="fc-mode">Month-to-<br/>month</div></div>
+            <div class="fc-bar"><div class="fc-fill" style="height:22%;background:linear-gradient(180deg,#FFB830,#E67E22)"></div><div class="fc-pct">11.27%</div><div class="fc-mode">One<br/>year</div></div>
+            <div class="fc-bar"><div class="fc-fill" style="height:6%;background:linear-gradient(180deg,#00FF9D,#00CC7A)"></div><div class="fc-pct">2.83%</div><div class="fc-mode">Two<br/>year</div></div>
+          </div>
+        </div>
+        <div class="fv-kpis">
+          <div class="fk" style="background:rgba(155,89,255,0.06);border-color:rgba(155,89,255,0.12)"><span class="fk-n" style="background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent">26.54%</span><span class="fk-l">Churn Rate</span></div>
+          <div class="fk" style="background:rgba(155,89,255,0.06);border-color:rgba(155,89,255,0.12)"><span class="fk-n" style="background:linear-gradient(135deg,var(--pink),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent">1,869</span><span class="fk-l">Lost</span></div>
+          <div class="fk" style="background:rgba(155,89,255,0.06);border-color:rgba(155,89,255,0.12)"><span class="fk-n" style="background:linear-gradient(135deg,var(--amber),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent">$1.67M</span><span class="fk-l">At Risk</span></div>
+        </div>
+      </div>
+      <div class="feat-body">
+        <div class="feat-status">Complete</div>
+        <div class="feat-num">// Project 02</div>
+        <div class="feat-title">Customer Churn Cohort Analysis &amp; Segmentation</div>
+        <p class="feat-desc">Advanced SQL analysis of 7,043 telecom customers — window functions, CTEs, and multi-dimensional segmentation to identify exactly who churns, when, and why. Plus 4 Python visualizations including a risk matrix heatmap.</p>
+        <ul class="feat-findings">
+          <li><span>&#9670;</span>Month-to-month customers churn at 42.71% — 15x higher than Two-year contracts</li>
+          <li><span>&#9670;</span>47.44% of new customers (0–12 months) leave in year one — onboarding crisis</li>
+          <li><span>&#9670;</span>Fiber optic without security: 49.36% churn — one product recommendation halves it</li>
+          <li><span>&#9670;</span>Electronic check users churn at 49.77% — 5x higher than credit card users</li>
+        </ul>
+        <div class="feat-tags"><span class="ftag">MySQL</span><span class="ftag">CTEs</span><span class="ftag">Window Functions</span><span class="ftag">Python</span><span class="ftag">Cohort Analysis</span></div>
+        <div class="feat-cta">Click to explore full project <div class="feat-arrow">&#8594;</div></div>
+      </div>
+    </div>
+
+    <!-- COMING SOON -->
+    <div class="small-grid" style="margin-top:2rem">
+      <div class="sm-card live" onclick="showPage('p3')" style="cursor:pointer"><div class="sm-visual" style="background:linear-gradient(135deg,#0a0520,#1a0a40)"><div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(155,89,255,0.15) 0%,transparent 70%)"></div><span style="font-size:3rem;position:relative;z-index:1">&#128202;</span></div><div class="sm-body"><span class="sm-tool" style="color:var(--green)">Python · ML</span><div class="sm-title">RFM Customer Segmentation</div><p class="sm-desc">K-Means clustering on 541,909 transactions — Champions are 20% of customers but drive 73.7% of revenue. Full segmentation with Python.</p><div class="sm-footer"><div class="sm-tags"><span class="sm-tag">Python</span><span class="sm-tag">K-Means</span><span class="sm-tag">scikit-learn</span></div><span class="live-b">LIVE</span></div></div></div>
+      <div class="sm-card live" onclick="showPage('p4')" style="cursor:pointer"><div class="sm-visual" style="background:linear-gradient(135deg,#1a1000,#3a2800)"><div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(255,184,48,0.12) 0%,transparent 70%)"></div><span style="font-size:3rem;position:relative;z-index:1">&#128506;</span></div><div class="sm-body"><span class="sm-tool" style="color:var(--amber)">Spatial Analytics</span><div class="sm-title">Urban Equity &amp; Transit Access</div><p class="sm-desc">Spatial equity analysis of 40 Chicago neighborhoods — r=0.92 income-transit correlation, 20 areas flagged for immediate investment.</p><div class="sm-footer"><div class="sm-tags"><span class="sm-tag">Python</span><span class="sm-tag">geopandas</span><span class="sm-tag">Spatial</span></div><span class="live-b">LIVE</span></div></div></div>
+      <div class="sm-card live" onclick="showPage('p5')" style="cursor:pointer"><div class="sm-visual" style="background:linear-gradient(135deg,#050a1a,#0a1530)"><div style="position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(0,212,255,0.1) 0%,transparent 70%)"></div><span style="font-size:3rem;position:relative;z-index:1">&#128200;</span></div><div class="sm-body"><span class="sm-tool" style="color:var(--accent2)">Python · Zillow Data</span><div class="sm-title">Real Estate Market Dashboard</div><p class="sm-desc">Price-to-income analysis of 493 US cities — 35% above unaffordable threshold. Santa Monica at 20.9x. 106 buy opportunities identified.</p><div class="sm-footer"><div class="sm-tags"><span class="sm-tag">Python</span><span class="sm-tag">Zillow</span><span class="sm-tag">PTI</span></div><span class="live-b">LIVE</span></div></div></div>
+    </div>
+  </section>
+
+  <section id="about-sec" class="about-section">
+    <div class="about-grid">
+      <div>
+        <div class="sec-label" style="margin-bottom:1.25rem">About Me</div>
+        <div class="about-name">Cynthia Wanjiku Ng'ang'a</div>
+        <div class="about-role">Business Analytics &middot; Montclair State University</div>
+        <p class="about-bio">Graduate student building practical analytics skills that create real business impact — <strong>SQL, Python, Tableau, Power BI, and Celonis process mining</strong>. Comfortable across industries from <strong>financial analysis and operations</strong> to <strong>supply chain and consulting</strong>. Actively seeking roles as a <strong>Business, Data, or Operations Analyst</strong>.</p>
+        <div class="edu-item"><div class="edu-deg">M.S. Business Analytics</div><div class="edu-sch">Montclair State University &middot; In Progress</div></div>
+        <div class="edu-item"><div class="edu-deg">B.S. Urban Design &amp; Development</div><div class="edu-sch">Undergraduate &middot; Completed</div></div>
+        <div class="skill-bars">
+          <div class="sb-item"><label>SQL <span>Advanced</span></label><div class="sb-track"><div class="sb-fill" style="width:88%;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div></div>
+          <div class="sb-item"><label>Tableau <span>Advanced</span></label><div class="sb-track"><div class="sb-fill" style="width:85%;background:linear-gradient(90deg,var(--purple),var(--pink))"></div></div></div>
+          <div class="sb-item"><label>Power BI <span>Intermediate</span></label><div class="sb-track"><div class="sb-fill" style="width:78%;background:linear-gradient(90deg,var(--pink),var(--amber))"></div></div></div>
+          <div class="sb-item"><label>Python <span>Intermediate</span></label><div class="sb-track"><div class="sb-fill" style="width:72%;background:linear-gradient(90deg,var(--amber),var(--green))"></div></div></div>
+          <div class="sb-item"><label>Excel <span>Advanced</span></label><div class="sb-track"><div class="sb-fill" style="width:90%;background:linear-gradient(90deg,var(--green),var(--cyan))"></div></div></div>
+          <div class="sb-item"><label>Celonis <span>Intermediate</span></label><div class="sb-track"><div class="sb-fill" style="width:70%;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div></div>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="skill-cat"><div class="scat-title">Analytics &amp; BI</div><ul class="scat-list"><li>Tableau Public</li><li>Power BI Service</li><li>Excel &amp; Power Query</li><li>Celonis Process Mining</li></ul></div>
+        <div class="skill-cat"><div class="scat-title">Programming</div><ul class="scat-list"><li>Python (pandas, Prophet)</li><li>SQL (MySQL)</li><li>Jupyter / Google Colab</li><li>GitHub</li></ul></div>
+        <div class="skill-cat"><div class="scat-title">Methods</div><ul class="scat-list"><li>Demand Forecasting</li><li>Cohort Analysis</li><li>Process Gap Analysis</li><li>Customer Segmentation</li></ul></div>
+        <div class="skill-cat"><div class="scat-title">Target Roles</div><ul class="scat-list"><li>Business Analyst</li><li>Data Analyst</li><li>Operations Analyst</li><li>Financial Analyst</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-sec" class="contact-section">
+    <div class="contact-orb"></div>
+    <div class="contact-inner">
+      <div class="sec-label" style="justify-content:center">Get In Touch</div>
+      <div class="contact-title">Let's build something <span class="glow-text">together</span></div>
+      <p class="contact-sub">Open to full-time analyst roles. Available immediately for consulting, supply chain, financial services, or any industry where data drives real decisions.</p>
+      <div class="contact-card">
+        <div class="email-display">&#9993; cynthiawanjiku750@gmail.com</div>
+        <div class="contact-btns">
+          <a href="mailto:cynthiawanjiku750@gmail.com" class="btn-cta">Send Email</a>
+          <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank" class="btn-outline2">LinkedIn &#8599;</a>
+          <a href="https://github.com/CW-star" target="_blank" class="btn-outline2">GitHub &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="fl">Cynthia Wanjiku Ng'ang'a</div><div class="fr"><a href="https://github.com/CW-star" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a><a href="mailto:cynthiawanjiku750@gmail.com">Email</a></div><div class="fc">&#169; 2026 &middot; Built with purpose</div></footer>
+</div>
+</div>
+
+
+  <div id="page-p1" class="page proj-page">
+    <div class="ptopbar"><button class="ptb-back" onclick="showPage('home')">&#8592; Back to Portfolio</button><div class="ptb-sep"></div><div class="ptb-title">Supply Chain Demand Forecasting</div><div class="ptb-pill">Python &middot; SQL &middot; Tableau &middot; Power BI</div></div>
+    <div class="proj-hero"><div class="ph-grid"></div><div class="ph-glow1"></div><div class="ph-glow2"></div>
+      <div class="proj-hero-inner">
+        <div class="proj-eyebrow">Project 01 &middot; End-to-End Analytics &middot; 180,519 Orders</div>
+        <div class="proj-h1">Supply Chain Demand<br/>Forecasting &amp; <em>Process Gap Analysis</em></div>
+        <p class="proj-lead">A complete diagnostic study of 180,519 global supply chain orders. SQL failure detection, Facebook Prophet forecasting, and executive dashboards in Tableau and Power BI. Headline finding: a $1.6M revenue gap hiding inside a single month's data.</p>
+        <div class="proj-meta-row">
+          <div><div class="pm-l">Dataset</div><div class="pm-v">DataCo Global Supply Chain &middot; Kaggle</div></div>
+          <div><div class="pm-l">Records</div><div class="pm-v">180,519 Orders</div></div>
+          <div><div class="pm-l">Period</div><div class="pm-v">Jan 2015 &mdash; Jan 2018</div></div>
+          <div><div class="pm-l">Tools</div><div class="pm-v">Python &middot; MySQL &middot; Tableau &middot; Power BI</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">180,519</span><span class="kpi-l">Total orders analyzed</span></div>
+      <div class="kpi"><span class="kpi-n" style="color:var(--red)">95.3%</span><span class="kpi-l">First Class late delivery rate</span></div>
+      <div class="kpi"><span class="kpi-n" style="color:var(--amber)">&#8722;56.5%</span><span class="kpi-l">Demand collapse Oct 2017</span></div>
+      <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">$1.6M</span><span class="kpi-l">Revenue gap quantified</span></div>
+    </div>
+    <div class="workflow-wrap"><div class="wf-sec-label">Analysis Workflow</div>
+      <div class="workflow">
+        <div class="wf-step"><div class="wf-ico">&#128230;</div><div class="wf-tool">Kaggle &middot; Python</div><div class="wf-name">Data Loading</div><div class="wf-desc">180K rows via pandas. Encoding fix. Date parsing.</div><div class="wf-arrow">&#8594;</div></div>
+        <div class="wf-step"><div class="wf-ico">&#128202;</div><div class="wf-tool">Python &middot; matplotlib</div><div class="wf-name">Exploration</div><div class="wf-desc">3 diagnostic charts: delivery, profitability, monthly trend.</div><div class="wf-arrow">&#8594;</div></div>
+        <div class="wf-step"><div class="wf-ico">&#128197;</div><div class="wf-tool">MySQL</div><div class="wf-name">SQL Diagnostics</div><div class="wf-desc">5 queries across region, shipping mode, product loss.</div><div class="wf-arrow">&#8594;</div></div>
+        <div class="wf-step"><div class="wf-ico">&#128200;</div><div class="wf-tool">Facebook Prophet</div><div class="wf-name">Forecasting</div><div class="wf-desc">6-month forecast surfaces $1.6M gap from Oct 2017.</div><div class="wf-arrow">&#8594;</div></div>
+        <div class="wf-step"><div class="wf-ico">&#128193;</div><div class="wf-tool">Tableau &middot; Power BI</div><div class="wf-name">Dashboards</div><div class="wf-desc">Two executive dashboards. Live Tableau published.</div></div>
+      </div>
+    </div>
+    <div class="tabs-section">
+      <div class="tabs-head"><h2>Dashboards &amp; Full Analysis</h2><p>Explore each phase of the project.</p></div>
+      <div class="tab-btns">
+        <button class="tb act" onclick="switchTab(event,'p1t1')">&#9654; Tableau Live</button>
+        <button class="tb" onclick="switchTab(event,'p1t2')">&#128208; Power BI</button>
+        <button class="tb" onclick="switchTab(event,'p1t3')">&#128013; Python Charts</button>
+        <button class="tb" onclick="switchTab(event,'p1t4')">&#128451; SQL Results</button>
+      </div>
+      <div id="tab-p1t1" class="tc-wrap act">
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">DataCo Global Supply Chain Performance Dashboard</span><span class="fpill">TABLEAU &middot; LIVE</span></div>
+        <div class="fbody"><a href="https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard" target="_blank" class="live-cta">&#8599; Open on Tableau Public</a>
+        <div class="iframe-wrap"><iframe src="https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard?:embed=yes&:display_count=no&:showVizHome=no" allowfullscreen loading="lazy"></iframe></div></div></div>
+      </div>
+      <div id="tab-p1t2" class="tc-wrap">
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Supply Chain Performance &middot; Power BI Report</span><span class="fpill">POWER BI</span></div>
+        <div class="fbody"><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/dashboard/dashboard_powerbi.png" alt="Power BI" class="fimg" onerror="this.outerHTML='<div class=fph><div class=fph-ico>&#128208;</div><span>dashboard_powerbi.png</span></div>'"/></div></div>
+      </div>
+      <div id="tab-p1t3" class="tc-wrap">
+        <div class="t2" style="margin-bottom:1.25rem">
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 01 &middot; Diagnostic</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_01_supply_chain_diagnostic.png" alt="C1" class="fimg" style="height:240px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:240px><div class=fph-ico>&#128202;</div><span>chart_01</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 02 &middot; Category Profitability</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_02_category_profitability.png" alt="C2" class="fimg" style="height:240px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:240px><div class=fph-ico>&#128202;</div><span>chart_02</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 03 &middot; Monthly Trend</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_03_monthly_trend.png" alt="C3" class="fimg" style="height:240px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:240px><div class=fph-ico>&#128202;</div><span>chart_03</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 04 &middot; Prophet Forecast vs Actual</span><span class="fpill">PROPHET</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_04_forecast_vs_actual.png" alt="C4" class="fimg" style="height:240px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:240px><div class=fph-ico>&#128200;</div><span>chart_04</span></div>'"/></div>
+        </div>
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 05 &middot; Revenue Gap $1,614,835</span><span class="fpill">PROPHET</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/chart_05_revenue_gap.png" alt="C5" class="fimg" onerror="this.outerHTML='<div class=fph><div class=fph-ico>&#128200;</div><span>chart_05</span></div>'"/></div>
+      </div>
+      <div id="tab-p1t4" class="tc-wrap">
+        <div class="t2" style="margin-bottom:1.25rem">
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 1 &middot; Late Delivery by Shipping Mode</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query1_late_delivery_by_shipping_mode.png" alt="Q1" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query1</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 2 &middot; Worst Regions</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query2_worst_regions_late_delivery.png" alt="Q2" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query2</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 3 &middot; Shipping Mode vs Region</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query3_shipping_mode_vs_region.png" alt="Q3" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query3</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 4 &middot; Monthly Volume</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query4_monthly_order_trend.png" alt="Q4" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query4</span></div>'"/></div>
+        </div>
+        <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 5 &middot; Top Loss-Making Orders</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/supply-chain-analytics/main/visuals/query5_loss_making_orders.png" alt="Q5" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph><div class=fph-ico>&#128451;</div><span>query5</span></div>'"/></div>
+      </div>
+    </div>
+    <div class="findings-section">
+      <div class="sec-label">Key Findings</div>
+      <h2 style="font-family:Syne,sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-top:0.75rem">What the Data Reveals</h2>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">Four critical insights with specific, quantified, actionable levers.</p>
+      <div class="findings-grid">
+        <div class="fg c1"><div class="fg-glow"></div><div class="fg-cat">&#9888; Shipping Crisis</div><span class="fg-num">95.3%</span><p class="fg-body">First Class has a <strong>95.3% late delivery rate across every market</strong>. Africa: 97%. Europe: 95.8%. Yet it remains profitable — a hidden long-term trust timebomb invisible in the P&amp;L.</p></div>
+        <div class="fg c2"><div class="fg-glow"></div><div class="fg-cat">&#128200; Demand Shock</div><span class="fg-num">Oct 2017</span><p class="fg-body">Prophet expected <strong>5,355 orders</strong>. Actual: 2,255 — a 56.5% collapse. Without the model this looks like gradual decline. With it, you see an exact event boundary and cause to investigate.</p></div>
+        <div class="fg c3"><div class="fg-glow"></div><div class="fg-cat">&#128200; Revenue Gap</div><span class="fg-num">$1.6M</span><p class="fg-body">Across four post-shock months, <strong>$1,614,835 in expected revenue was lost</strong>. January 2018 revenue was 68% below the pre-shock average. Modeled, month-by-month, and quantified.</p></div>
+        <div class="fg c4"><div class="fg-glow"></div><div class="fg-cat">&#128187; Structural Loss</div><span class="fg-num">Computers</span><p class="fg-body">9 of 10 worst orders are Computers — losses of <strong>&#8722;$2,255 to &#8722;$3,443 per order</strong> at 0&ndash;12% discounts. Pricing problem, not a promotions problem.</p></div>
+      </div>
+    </div>
+    <div class="insights-section">
+      <div class="is-inner">
+        <div class="is-glow"></div>
+        <div class="is-eyebrow">&#128161; My Insights</div>
+        <div class="is-title">What I Learned &amp; What the Data Told Me</div>
+        <ul class="is-list">
+          <li class="is-item"><div class="is-num">1</div><div><div class="is-lbl">What I set out to answer</div><div class="is-txt">Give supply chain leadership one complete picture: where deliveries fail, what caused the 2017 collapse, which products are structurally unprofitable — with a dollar amount on each finding.</div></div></li>
+          <li class="is-item"><div class="is-num">2</div><div><div class="is-lbl">What surprised me</div><div class="is-txt">The October 2017 demand shock was invisible in raw data. Only the Prophet forecast overlay revealed it. Without the model you see decline. With it, you see a $1.6M hole with an exact start date.</div></div></li>
+          <li class="is-item"><div class="is-num">3</div><div><div class="is-lbl">The uncomfortable finding</div><div class="is-txt">First Class generates profit despite failing 95% of customers. No short-term financial pressure to fix it. The right framing is a customer lifetime value model that makes the long-term cost visible to the CFO.</div></div></li>
+          <li class="is-item"><div class="is-num">4</div><div><div class="is-lbl">What I would do next</div><div class="is-txt">Connect to live order data, build a real-time late delivery alert at 48 hours past SLA, and add a CLV model to convert the 95% late rate into a dollar-denominated risk for the finance team.</div></div></li>
+        </ul>
+        <div class="tableau-cta-box">
+          <div class="tcta-text"><div class="label">Open in Tableau Public</div><div class="title">View Full Interactive Dashboard</div><div class="sub">Click bars to cross-filter &middot; Hover for tooltips &middot; Drill by market or shipping mode</div></div>
+          <a href="https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard" target="_blank" class="btn-glow">VIEW ON TABLEAU &#8594;</a>
+        </div>
+      </div>
+    </div>
+    <div class="tu-wrap"><div class="tu-label">Tools &amp; Methods Used</div><div class="tu-chips"><span class="tuc">&#128013; Python</span><span class="tuc">&#128200; Facebook Prophet</span><span class="tuc">&#128451; MySQL</span><span class="tuc">&#128202; Tableau Public</span><span class="tuc">&#128208; Power BI</span><span class="tuc">&#9729; Google Colab</span><span class="tuc">&#128025; GitHub</span></div></div>
+    <div class="proj-links">
+      <a href="https://github.com/CW-star/supply-chain-analytics" target="_blank" class="pl pr">GitHub Repo &#8594;</a>
+      <a href="https://public.tableau.com/views/DataCoSupplyChainPerformanceDashboard_17776385373580/DataCoSupplyChainPerformanceDashboard" target="_blank" class="pl">Live Tableau &#8599;</a>
+      <a href="https://github.com/CW-star/supply-chain-analytics/blob/main/notebooks/01_data_exploration.ipynb" target="_blank" class="pl">Python Notebook &#8594;</a>
+      <a href="https://github.com/CW-star/supply-chain-analytics/blob/main/sql/diagnostic_queries.sql" target="_blank" class="pl">SQL Queries &#8594;</a>
+      <a href="mailto:cynthiawanjiku750@gmail.com" class="pl em">&#9993; Contact Me</a>
+    </div>
+    <footer><div class="fl">Cynthia Wanjiku Ng'ang'a</div><div class="fr"><a href="https://github.com/CW-star" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a><a href="mailto:cynthiawanjiku750@gmail.com">Email</a></div><div class="fc">&#169; 2026</div></footer>
+  </div>
+
+  <div id="page-p2" class="page proj-page">
+    <div class="ptopbar"><button class="ptb-back" onclick="showPage('home')">&#8592; Back to Portfolio</button><div class="ptb-sep"></div><div class="ptb-title">Customer Churn Cohort Analysis</div><div class="ptb-pill">MySQL &middot; Python &middot; CTEs &middot; Window Functions</div></div>
+    <div class="proj-hero"><div class="ph-grid"></div><div class="ph-glow1"></div><div class="ph-glow2"></div>
+      <div class="proj-hero-inner">
+        <div class="proj-eyebrow">Project 02 &middot; SQL Diagnostic Analysis &middot; 7,043 Customers</div>
+        <div class="proj-h1">Customer Churn<br/>Cohort Analysis &amp; <em>Segmentation</em></div>
+        <p class="proj-lead">A telecom company is losing 26.54% of its customers — $139K monthly, $1.67M annualized. Advanced SQL — window functions, CTEs, multi-dimensional segmentation — to identify exactly who churns, when, and what drives it. Plus 4 Python visualizations including a churn risk matrix heatmap.</p>
+        <div class="proj-meta-row">
+          <div><div class="pm-l">Dataset</div><div class="pm-v">IBM Telco Customer Churn &middot; Kaggle</div></div>
+          <div><div class="pm-l">Records</div><div class="pm-v">7,043 Customers</div></div>
+          <div><div class="pm-l">Techniques</div><div class="pm-v">CTEs &middot; Window Functions &middot; Cohort Analysis</div></div>
+          <div><div class="pm-l">Tools</div><div class="pm-v">MySQL &middot; Python &middot; Workbench</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><span class="kpi-n" style="color:var(--red)">26.54%</span><span class="kpi-l">Overall churn rate</span></div>
+      <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">1,869</span><span class="kpi-l">Customers churned</span></div>
+      <div class="kpi"><span class="kpi-n" style="color:var(--amber)">$1.67M</span><span class="kpi-l">Annualized revenue at risk</span></div>
+      <div class="kpi"><span class="kpi-n" style="color:var(--pink)">42.71%</span><span class="kpi-l">Month-to-month churn rate</span></div>
+    </div>
+    <div class="workflow-wrap"><div class="wf-sec-label">Analysis Workflow</div>
+      <div class="workflow">
+        <div class="wf-step"><div class="wf-ico">&#128230;</div><div class="wf-tool">Kaggle &middot; MySQL</div><div class="wf-name">Data Loading</div><div class="wf-desc">7,043 rows imported. Encoding fix for Churn column carriage returns.</div><div class="wf-arrow">&#8594;</div></div>
+        <div class="wf-step"><div class="wf-ico">&#128269;</div><div class="wf-tool">MySQL &middot; CTEs</div><div class="wf-name">Cohort Queries</div><div class="wf-desc">6 diagnostic queries — contract, tenure, internet, payment, window ranking.</div><div class="wf-arrow">&#8594;</div></div>
+        <div class="wf-step"><div class="wf-ico">&#128202;</div><div class="wf-tool">Python &middot; matplotlib</div><div class="wf-name">Visualizations</div><div class="wf-desc">4 charts: overview, contract/tenure, internet/payment, risk matrix heatmap.</div><div class="wf-arrow">&#8594;</div></div>
+        <div class="wf-step"><div class="wf-ico">&#128203;</div><div class="wf-tool">Analysis</div><div class="wf-name">Business Findings</div><div class="wf-desc">5 actionable findings with revenue impact and specific recommendations.</div><div class="wf-arrow">&#8594;</div></div>
+        <div class="wf-step"><div class="wf-ico">&#128193;</div><div class="wf-tool">GitHub</div><div class="wf-name">Published</div><div class="wf-desc">SQL scripts, Python notebook, and all visuals on GitHub.</div></div>
+      </div>
+    </div>
+    <div class="tabs-section">
+      <div class="tabs-head"><h2>SQL Queries &amp; Python Visualizations</h2><p>Explore Python charts and SQL query results for the full analysis.</p></div>
+      <div class="tab-btns">
+        <button class="tb act" onclick="switchTab(event,'p2t1')">&#128202; Python Charts (4)</button>
+        <button class="tb" onclick="switchTab(event,'p2t2')">&#128451; SQL Results (6)</button>
+      </div>
+      <div id="tab-p2t1" class="tc-wrap act">
+        <div class="t2" style="margin-bottom:1.25rem">
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 01 &middot; Churn Overview KPI Summary</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/visuals/chart_01_churn_overview.png" alt="C1" class="fimg" style="height:280px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:280px><div class=fph-ico>&#128202;</div><span>chart_01_churn_overview.png</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 02 &middot; Contract Type &amp; Tenure Cohort</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/visuals/chart_02_contract_tenure.png" alt="C2" class="fimg" style="height:280px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:280px><div class=fph-ico>&#128202;</div><span>chart_02_contract_tenure.png</span></div>'"/></div>
+        </div>
+        <div class="t2">
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 03 &middot; Internet Service &amp; Payment Method</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/visuals/chart_03_internet_payment.png" alt="C3" class="fimg" style="height:280px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:280px><div class=fph-ico>&#128202;</div><span>chart_03_internet_payment.png</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Chart 04 &middot; Churn Risk Matrix Heatmap</span><span class="fpill">PYTHON</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/visuals/chart_04_churn_risk_matrix.png" alt="C4" class="fimg" style="height:280px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:280px><div class=fph-ico>&#128202;</div><span>chart_04_churn_risk_matrix.png</span></div>'"/></div>
+        </div>
+      </div>
+      <div id="tab-p2t2" class="tc-wrap">
+        <div class="t2" style="margin-bottom:1.25rem">
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 1 &middot; Overall Churn Rate &amp; Revenue at Risk</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/sql/query1_overall_churn_rate.png" alt="Q1" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query1_overall_churn_rate.png</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 2 &middot; Churn by Contract Type</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/sql/query2_churn_by_contract.png" alt="Q2" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query2_churn_by_contract.png</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 3 &middot; Churn by Tenure Cohort CTE</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/sql/query3_churn_by_tenure_cohort.png" alt="Q3" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query3_churn_by_tenure_cohort.png</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 4 &middot; Internet Service &amp; Security</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/sql/query4_churn_by_internet_security.png" alt="Q4" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query4_churn_by_internet_security.png</span></div>'"/></div>
+        </div>
+        <div class="t2">
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 5 &middot; High-Value Churned Customers RANK Window Function</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/sql/query5_high_value_churned_customers.png" alt="Q5" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query5</span></div>'"/></div>
+          <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Query 6 &middot; Payment Method &amp; Billing Type</span><span class="fpill">MySQL</span></div><img src="https://raw.githubusercontent.com/CW-star/Customer-Churn-Analysis/main/sql/query6_churn_by_payment_method.png" alt="Q6" class="fimg" style="height:200px;object-fit:cover" onerror="this.outerHTML='<div class=fph style=height:200px><div class=fph-ico>&#128451;</div><span>query6</span></div>'"/></div>
+        </div>
+      </div>
+    </div>
+    <div class="findings-section">
+      <div class="sec-label">Key Findings</div>
+      <h2 style="font-family:Syne,sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-top:0.75rem">What the Data Reveals</h2>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">Four actionable insights — each pointing to a specific intervention the business can make today.</p>
+      <div class="findings-grid">
+        <div class="fg c1"><div class="fg-glow"></div><div class="fg-cat">&#128308; Contract Risk</div><span class="fg-num">42.71%</span><p class="fg-body">Month-to-month churn at <strong>42.71%</strong> — 15x higher than Two-year at 2.83%. Signing a one-year contract drops churn probability from 43% to 11% instantly.</p></div>
+        <div class="fg c2"><div class="fg-glow"></div><div class="fg-cat">&#128197; Onboarding Crisis</div><span class="fg-num">47.44%</span><p class="fg-body">Nearly <strong>half of new customers (0&ndash;12 months) leave in year one</strong> — 1,037 customers lost in the onboarding window. Loyal 60+ month customers churn at just 6.61%.</p></div>
+        <div class="fg c3"><div class="fg-glow"></div><div class="fg-cat">&#128225; Product Gap</div><span class="fg-num">49.36%</span><p class="fg-body">Fiber optic without online security churns at <strong>49.36%</strong>. Add security and it drops to 21.81%. A single product recommendation at signup could cut Fiber churn in half.</p></div>
+        <div class="fg c4"><div class="fg-glow"></div><div class="fg-cat">&#128179; Payment Signal</div><span class="fg-num">49.77%</span><p class="fg-body">Electronic check + paperless = <strong>49.77% churn</strong>. Credit card automatic = 10%. Payment method is a stronger churn predictor than internet service type.</p></div>
+      </div>
+    </div>
+    <div class="insights-section">
+      <div class="is-inner">
+        <div class="is-glow"></div>
+        <div class="is-eyebrow">&#128161; My Insights</div>
+        <div class="is-title">What I Learned &amp; What the Data Told Me</div>
+        <ul class="is-list">
+          <li class="is-item"><div class="is-num">1</div><div><div class="is-lbl">What I set out to answer</div><div class="is-txt">A telecom company has a 26.54% churn problem. My goal was to go beyond the headline and find the specific segments, behaviors, and product combinations driving it — with revenue impact attached to each.</div></div></li>
+          <li class="is-item"><div class="is-num">2</div><div><div class="is-lbl">What surprised me</div><div class="is-txt">Payment method being a stronger predictor than internet service was unexpected. Electronic check users churn at 49.77% vs 10% for credit card users. This likely correlates with financial instability, not the payment method itself — which changes what the intervention should be.</div></div></li>
+          <li class="is-item"><div class="is-num">3</div><div><div class="is-lbl">The most actionable finding</div><div class="is-txt">The 0&ndash;12 month window has 47.44% churn. That is the single highest-leverage intervention point. A structured 90-day onboarding program targeting month-to-month Fiber users without security could prevent hundreds of churns per quarter.</div></div></li>
+          <li class="is-item"><div class="is-num">4</div><div><div class="is-lbl">What I would do next</div><div class="is-txt">Build a churn prediction model in Python (logistic regression or XGBoost) using contract type, tenure, internet service, and payment method as predictors — then validate which combination is the most reliable early warning signal for the retention team.</div></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tu-wrap"><div class="tu-label">Tools &amp; Methods Used</div><div class="tu-chips"><span class="tuc">&#128451; MySQL</span><span class="tuc">&#128013; Python (pandas, matplotlib)</span><span class="tuc">&#128202; CTEs &amp; Window Functions</span><span class="tuc">&#128269; Cohort Analysis</span><span class="tuc">&#128025; GitHub</span><span class="tuc">&#128230; Kaggle</span></div></div>
+    <div class="proj-links">
+      <a href="https://github.com/CW-star/Customer-Churn-Analysis" target="_blank" class="pl pr">GitHub Repo &#8594;</a>
+      <a href="https://github.com/CW-star/Customer-Churn-Analysis/blob/main/sql/churn_diagnostic_queries.sql" target="_blank" class="pl">SQL Queries &#8594;</a>
+      <a href="https://github.com/CW-star/Customer-Churn-Analysis/blob/main/notebooks/01_churn_visualizations.ipynb" target="_blank" class="pl">Python Notebook &#8594;</a>
+      <a href="mailto:cynthiawanjiku750@gmail.com" class="pl em">&#9993; Contact Me</a>
+    </div>
+    <footer><div class="fl">Cynthia Wanjiku Ng'ang'a</div><div class="fr"><a href="https://github.com/CW-star" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a><a href="mailto:cynthiawanjiku750@gmail.com">Email</a></div><div class="fc">&#169; 2026</div></footer>
+  </div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  var sn=document.getElementById('sidenav');
+  sn.style.display=id==='home'?'flex':'none';
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function gotoSec(id){
+  setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},80);
+}
+function switchTab(e,id){
+  var page=e.currentTarget.closest('.page');
+  page.querySelectorAll('.tc-wrap').forEach(function(t){t.classList.remove('act');});
+  page.querySelectorAll('.tb').forEach(function(b){b.classList.remove('act');});
+  var el=document.getElementById('tab-'+id);
+  if(el)el.classList.add('act');
+  e.currentTarget.classList.add('act');
+}
+var sections=['hero-sec','projects-sec','about-sec','contact-sec'];
+var snItems=document.querySelectorAll('.sn-item');
+window.addEventListener('scroll',function(){
+  var scrollY=window.scrollY;
+  sections.forEach(function(id,i){
+    var el=document.getElementById(id);
+    if(el){var top=el.offsetTop-200;var bot=top+el.offsetHeight;
+      if(scrollY>=top&&scrollY<bot){snItems.forEach(function(s){s.classList.remove('active');});if(snItems[i])snItems[i].classList.add('active');}}
+  });
+});
+var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.06});
+document.querySelectorAll('.fade-up').forEach(function(el){io.observe(el);});
+</script>
+
+<!-- PROJECT 3 PAGE -->
+<div id="page-p3" class="page proj-page">
+  <div class="ptopbar">
+    <button class="ptb-back" onclick="showPage('home')">&#8592; Back to Portfolio</button>
+    <div class="ptb-sep"></div>
+    <div class="ptb-title">RFM Customer Segmentation</div>
+    <div class="ptb-pill">Python &middot; K-Means &middot; scikit-learn</div>
+  </div>
+  <div class="proj-hero">
+    <div class="ph-grid"></div><div class="ph-glow1"></div><div class="ph-glow2"></div>
+    <div class="proj-hero-inner">
+      <div class="proj-eyebrow">Project 03 &middot; Machine Learning &middot; 541,909 Transactions</div>
+      <div class="proj-h1">RFM Customer<br/>Segmentation &amp; <em>K-Means</em><br/><em>Clustering</em></div>
+      <p class="proj-lead">An e-commerce company has 541,909 transactions but no map of its customers. This project builds a complete RFM scoring model using K-Means clustering to identify Champions, New/Promising, At-Risk, and Lost customers — and translates each segment into a precise marketing action plan.</p>
+      <div class="proj-meta-row">
+        <div><div class="pm-l">Dataset</div><div class="pm-v">UCI Online Retail II &middot; Kaggle</div></div>
+        <div><div class="pm-l">Transactions</div><div class="pm-v">541,909 after cleaning</div></div>
+        <div><div class="pm-l">Customers</div><div class="pm-v">5,878 unique customers</div></div>
+        <div><div class="pm-l">Tools</div><div class="pm-v">Python &middot; pandas &middot; scikit-learn &middot; K-Means</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">5,878</span><span class="kpi-l">Customers segmented</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--cyan)">$17.7M</span><span class="kpi-l">Total revenue analyzed</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--green)">73.7%</span><span class="kpi-l">Revenue from Champions</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--red)">33.6%</span><span class="kpi-l">Customers lost / inactive</span></div>
+  </div>
+  <div class="workflow-wrap">
+    <div class="wf-sec-label">Analysis Workflow</div>
+    <div class="workflow">
+      <div class="wf-step"><div class="wf-ico">&#128230;</div><div class="wf-tool">Kaggle &middot; Python</div><div class="wf-name">Data Loading</div><div class="wf-desc">541,909 rows. Remove cancellations, nulls, negative values. Parse dates.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128200;</div><div class="wf-tool">pandas</div><div class="wf-name">RFM Scoring</div><div class="wf-desc">Calculate Recency, Frequency, Monetary per customer. Log transform for skew.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#127760;</div><div class="wf-tool">scikit-learn</div><div class="wf-name">K-Means Clustering</div><div class="wf-desc">Silhouette scoring k=2-8. Force k=4 for business utility. StandardScaler.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#127991;</div><div class="wf-tool">pandas</div><div class="wf-name">Segment Labeling</div><div class="wf-desc">Champions, New/Promising, At-Risk, Lost. Revenue share per segment.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128202;</div><div class="wf-tool">matplotlib</div><div class="wf-name">Visualizations</div><div class="wf-desc">4 charts: overview, 3D scatter, radar profiles, marketing action matrix.</div></div>
+    </div>
+  </div>
+  <div class="tabs-section">
+    <div class="tabs-head">
+      <h2>Charts &amp; Analysis</h2>
+      <p>Four visualizations telling the complete customer segmentation story.</p>
+    </div>
+    <div class="tab-btns">
+      <button class="tb act" onclick="switchTab(event,'r1')">&#128202; Segment Overview</button>
+      <button class="tb" onclick="switchTab(event,'r2')">&#127760; 3D Cluster Space</button>
+      <button class="tb" onclick="switchTab(event,'r3')">&#127881; RFM Radar Profiles</button>
+      <button class="tb" onclick="switchTab(event,'r4')">&#127919; Marketing Action Plan</button>
+    </div>
+    <div id="tab-r1" class="tc-wrap act">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Segment Overview &middot; Customer Distribution &middot; Revenue &middot; Key Numbers</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/rfm-customer-segmentation/main/visuals/chart_01_segment_overview.png" alt="Segment Overview" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#128202;</div><span>chart_01_segment_overview.png</span></div></div>
+    </div>
+    <div id="tab-r2" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">RFM Segments in 3D Space &middot; Recency &middot; Frequency &middot; Monetary</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/rfm-customer-segmentation/main/visuals/chart_02_3d_scatter.png" alt="3D Scatter" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127760;</div><span>chart_02_3d_scatter.png</span></div></div>
+    </div>
+    <div id="tab-r3" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">RFM Profile by Segment &middot; Radar Chart</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/rfm-customer-segmentation/main/visuals/chart_03_radar_profiles.png" alt="Radar Profiles" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127881;</div><span>chart_03_radar_profiles.png</span></div></div>
+    </div>
+    <div id="tab-r4" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Recency vs Monetary &middot; Marketing Action Plan by Segment</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/rfm-customer-segmentation/main/visuals/chart_04_action_matrix.png" alt="Action Matrix" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127919;</div><span>chart_04_action_matrix.png</span></div></div>
+    </div>
+  </div>
+  <div class="findings-section">
+    <div class="sec-label">Key Findings</div>
+    <h2 style="font-family:Syne,sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-top:0.75rem">What the Segmentation Reveals</h2>
+    <p style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">Four segments with dramatically different revenue profiles and retention needs.</p>
+    <div class="findings-grid">
+      <div class="fg c2"><div class="fg-glow"></div><div class="fg-cat">&#9733; Champions</div><span class="fg-num">73.7%</span><p class="fg-body">Champions are just <strong>20.2% of customers</strong> but generate <strong>$13.1M — 73.7% of all revenue</strong>. Average spend: $11,014. Last purchase: 27 days ago. Losing one Champion costs more than acquiring 13 new customers. These must be protected at all cost.</p></div>
+      <div class="fg c3"><div class="fg-glow"></div><div class="fg-cat">&#9888; At-Risk</div><span class="fg-num">228 days</span><p class="fg-body">1,465 customers who used to buy regularly are now <strong>228 days silent</strong>. They represent <strong>$2.9M in annual revenue</strong> that is actively slipping away. These customers already know the brand — a targeted reactivation campaign has the highest ROI of any marketing action.</p></div>
+      <div class="fg c4"><div class="fg-glow"></div><div class="fg-cat">&#128200; New / Promising</div><span class="fg-num">$865</span><p class="fg-body">1,251 recent customers averaging just $865 — but they bought <strong>28 days ago</strong>, the same recency as Champions. The difference is frequency. <strong>The goal: convert these into Champions</strong> through onboarding, product education, and the first upsell before they go cold.</p></div>
+      <div class="fg c1"><div class="fg-glow"></div><div class="fg-cat">&#128148; Lost / Inactive</div><span class="fg-num">396 days</span><p class="fg-body">1,974 customers — <strong>33.6% of the base</strong> — last purchased 396 days ago and spend only $326 on average. They generate 3.6% of revenue. A last-chance reactivation campaign makes sense; if there is no response, <strong>reallocating that marketing spend to Champions and At-Risk yields 10x better ROI</strong>.</p></div>
+    </div>
+  </div>
+  <div class="insights-section">
+    <div class="sec-label">My Insights</div>
+    <div class="is-inner">
+      <div class="is-glow"></div>
+      <div class="is-eyebrow">&#128161; My Insights from This Project</div>
+      <div class="is-title">What I Learned &amp;<br/>What the Model Told Me</div>
+      <ul class="is-list">
+        <li class="is-item"><div class="is-num">1</div><div><div class="is-lbl">Why RFM over pure ML</div><div class="is-txt">K-Means on raw RFM values produced mathematically clean clusters that map directly to business actions. This is more valuable than a black-box model with higher accuracy — a marketing team can understand "Champion" and act on it immediately.</div></div></li>
+        <li class="is-item"><div class="is-num">2</div><div><div class="is-lbl">The 73.7% finding changes the budget conversation</div><div class="is-txt">Before this analysis, marketing spend was presumably distributed somewhat evenly across the customer base. After it, the conversation shifts: 73.7% of revenue is concentrated in 20% of customers. Protecting those 1,188 Champions should absorb a disproportionate share of the retention budget.</div></div></li>
+        <li class="is-item"><div class="is-num">3</div><div><div class="is-lbl">New vs Promising is the hidden opportunity</div><div class="is-txt">The New/Promising segment bought just 28 days ago — the same recency as Champions. The only difference is frequency. This means the onboarding window is still open. A structured 60-day email sequence targeting this segment has an outsized expected return.</div></div></li>
+        <li class="is-item"><div class="is-num">4</div><div><div class="is-lbl">What I would do next</div><div class="is-txt">Add a predictive churn probability score to each customer using logistic regression, connect to a CRM via API, and build a live dashboard that flags when a Champion's recency score starts degrading — before they become At-Risk.</div></div></li>
+      </ul>
+    </div>
+  </div>
+  <div class="tu-wrap">
+    <div class="tu-label">Tools &amp; Methods Used</div>
+    <div class="tu-chips">
+      <span class="tuc">&#128013; Python (pandas, numpy)</span>
+      <span class="tuc">&#127760; scikit-learn K-Means</span>
+      <span class="tuc">&#128200; StandardScaler</span>
+      <span class="tuc">&#128202; matplotlib 3D</span>
+      <span class="tuc">&#127881; Radar Charts</span>
+      <span class="tuc">&#9733; RFM Scoring Framework</span>
+      <span class="tuc">&#9729;&#65039; Google Colab</span>
+      <span class="tuc">&#128025; GitHub</span>
+    </div>
+  </div>
+  <div class="proj-links">
+    <a href="https://github.com/CW-star/rfm-customer-segmentation" target="_blank" class="pl pr">GitHub Repository &#8594;</a>
+    <a href="https://github.com/CW-star/rfm-customer-segmentation/blob/main/notebooks/01_rfm_segmentation.ipynb" target="_blank" class="pl">Python Notebook &#8594;</a>
+    <a href="mailto:cynthiawanjiku750@gmail.com" class="pl em">&#9993; Contact Me</a>
+  </div>
+  <footer>
+    <div class="fl">Cynthia Wanjiku Ng'ang'a</div>
+    <div class="fr">
+      <a href="https://github.com/CW-star" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a>
+      <a href="mailto:cynthiawanjiku750@gmail.com">Email</a>
+    </div>
+    <div class="fc">&#169; 2026 &middot; Built with purpose</div>
+  </footer>
+</div>
+
+<!-- PROJECT 4 PAGE -->
+<div id="page-p4" class="page proj-page">
+  <div class="ptopbar">
+    <button class="ptb-back" onclick="showPage('home')">&#8592; Back to Portfolio</button>
+    <div class="ptb-sep"></div>
+    <div class="ptb-title">Urban Equity &amp; Transit Access Analysis</div>
+    <div class="ptb-pill">Python &middot; Spatial Analytics &middot; geopandas</div>
+  </div>
+  <div class="proj-hero">
+    <div class="ph-grid"></div><div class="ph-glow1"></div><div class="ph-glow2"></div>
+    <div class="proj-hero-inner">
+      <div class="proj-eyebrow">Project 04 &middot; Spatial Analytics &middot; 40 Chicago Community Areas</div>
+      <div class="proj-h1">Urban Equity &amp;<br/><em>Transit Access</em><br/>Analysis</div>
+      <p class="proj-lead">A spatial equity analysis of Chicago&#39;s 40 community areas examining the relationship between household income and CTA transit access. The finding: a near-perfect 0.92 correlation between wealth and transit availability — and 20 neighborhoods flagged for immediate city investment.</p>
+      <div class="proj-meta-row">
+        <div><div class="pm-l">Data Sources</div><div class="pm-v">ACS 2021 &middot; US Census Bureau &middot; CTA Stop Data</div></div>
+        <div><div class="pm-l">Geography</div><div class="pm-v">40 Chicago Community Areas</div></div>
+        <div><div class="pm-l">Key Metric</div><div class="pm-v">r = 0.92 income-transit correlation</div></div>
+        <div><div class="pm-l">Tools</div><div class="pm-v">Python &middot; pandas &middot; matplotlib &middot; geopandas</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">r = 0.92</span><span class="kpi-l">Income-transit correlation</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--amber)">4x gap</span><span class="kpi-l">High vs low income transit access</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--red)">20 areas</span><span class="kpi-l">Flagged: Invest Now</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--green)">47K+</span><span class="kpi-l">Residents impacted by gap</span></div>
+  </div>
+  <div class="workflow-wrap">
+    <div class="wf-sec-label">Analysis Workflow</div>
+    <div class="workflow">
+      <div class="wf-step"><div class="wf-ico">&#128202;</div><div class="wf-tool">US Census &middot; CTA</div><div class="wf-name">Data Collection</div><div class="wf-desc">ACS 2021 income data + CTA stop counts for all 40 community areas.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#127760;</div><div class="wf-tool">Python &middot; pandas</div><div class="wf-name">Spatial Scoring</div><div class="wf-desc">Transit gap score: need (income + no-vehicle) minus access (stops). Identifies underserved areas.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128200;</div><div class="wf-tool">numpy &middot; scipy</div><div class="wf-name">Correlation Analysis</div><div class="wf-desc">Pearson r = 0.92 between median income and CTA stops. Trend line across all 40 areas.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#127919;</div><div class="wf-tool">pandas</div><div class="wf-name">Priority Matrix</div><div class="wf-desc">Investment priority classification: Invest Now, Monitor, Adequate — based on need vs access.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128202;</div><div class="wf-tool">matplotlib</div><div class="wf-name">Visualizations</div><div class="wf-desc">4 charts: overview, bubble map, zone deep dive, policy recommendation matrix.</div></div>
+    </div>
+  </div>
+  <div class="tabs-section">
+    <div class="tabs-head">
+      <h2>Charts &amp; Analysis</h2>
+      <p>Four visualizations telling the complete transit equity story — from correlation to policy action.</p>
+    </div>
+    <div class="tab-btns">
+      <button class="tb act" onclick="switchTab(event,'u1')">&#128202; Overview &amp; Correlation</button>
+      <button class="tb" onclick="switchTab(event,'u2')">&#127760; Transit Gap Bubble Map</button>
+      <button class="tb" onclick="switchTab(event,'u3')">&#127960; Zone Deep Dive</button>
+      <button class="tb" onclick="switchTab(event,'u4')">&#127759; Policy Recommendations</button>
+    </div>
+    <div id="tab-u1" class="tc-wrap act">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Transit Access vs Income &middot; Correlation &middot; Key Numbers</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/urban-equity-transit-analysis/main/visuals/chart_01_transit_income_overview.png" alt="Overview" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#128202;</div><span>chart_01_transit_income_overview.png</span></div></div>
+    </div>
+    <div id="tab-u2" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Transit Equity Bubble Chart &middot; Top 15 Underserved Neighborhoods</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/urban-equity-transit-analysis/main/visuals/chart_02_transit_gap.png" alt="Gap" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127760;</div><span>chart_02_transit_gap.png</span></div></div>
+    </div>
+    <div id="tab-u3" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Zone Comparison &middot; Stops &middot; Income Distribution &middot; No-Vehicle Households</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/urban-equity-transit-analysis/main/visuals/chart_03_zone_analysis.png" alt="Zones" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127960;</div><span>chart_03_zone_analysis.png</span></div></div>
+    </div>
+    <div id="tab-u4" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Investment Priority Matrix &middot; 4 Policy Recommendations</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/urban-equity-transit-analysis/main/visuals/chart_04_policy_recommendations.png" alt="Policy" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127759;</div><span>chart_04_policy_recommendations.png</span></div></div>
+    </div>
+  </div>
+  <div class="findings-section">
+    <div class="sec-label">Key Findings</div>
+    <h2 style="font-family:Syne,sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-top:0.75rem">What the Data Reveals</h2>
+    <p style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">Five findings that reframe how Chicago&#39;s transit investment should be prioritized.</p>
+    <div class="findings-grid">
+      <div class="fg c2"><div class="fg-glow"></div><div class="fg-cat">&#128200; Correlation</div><span class="fg-num">r = 0.92</span><p class="fg-body">Income and transit access have a <strong>near-perfect 0.92 Pearson correlation</strong> across Chicago&#39;s 40 community areas. This is not a coincidence — it is a structural pattern baked into decades of infrastructure investment decisions that systematically favored wealthier neighborhoods.</p></div>
+      <div class="fg c3"><div class="fg-glow"></div><div class="fg-cat">&#9888; Access Gap</div><span class="fg-num">4x Gap</span><p class="fg-body">High income areas average <strong>15 CTA stops within 0.5 miles</strong>. Low income areas average just 3.6 stops. That is a 4x transit advantage for wealthy neighborhoods — and the gap is widest in the communities where car ownership is lowest and transit dependence is highest.</p></div>
+      <div class="fg c1"><div class="fg-glow"></div><div class="fg-cat">&#128148; Worst Cases</div><span class="fg-num">2 stops</span><p class="fg-body"><strong>Fuller Park, Englewood, and West Englewood</strong> each have only 2 CTA stops, median incomes of $20-24K, and 44-52% of households without a vehicle. These residents depend entirely on transit — and have almost none. Any new service investment should start here.</p></div>
+      <div class="fg c4"><div class="fg-glow"></div><div class="fg-cat">&#127760; Geographic Split</div><span class="fg-num">11.8 vs 4</span><p class="fg-body">North/Central Chicago averages <strong>11.8 stops</strong> per community area. The West Side and South Side average 4.4 and 4.0 — less than one-third. This is not a density or demand problem. Both the South Side and West Side have high population density and high no-vehicle rates.</p></div>
+    </div>
+  </div>
+  <div class="insights-section">
+    <div class="sec-label">My Insights</div>
+    <div class="is-inner">
+      <div class="is-glow"></div>
+      <div class="is-eyebrow">&#128161; My Insights from This Project</div>
+      <div class="is-title">What the Analysis<br/>Told Me About Urban Equity</div>
+      <ul class="is-list">
+        <li class="is-item"><div class="is-num">1</div><div><div class="is-lbl">Why this matters beyond transit</div><div class="is-txt">Transit access is a proxy for economic opportunity. A resident in Fuller Park with no car and 2 nearby CTA stops has fundamentally fewer options for employment, healthcare, and education than someone in Lincoln Park with 15 stops. The transit gap IS an opportunity gap.</div></div></li>
+        <li class="is-item"><div class="is-num">2</div><div><div class="is-lbl">The 0.92 correlation is the headline</div><div class="is-txt">A correlation of 0.92 in social science data is remarkable. It means income alone explains 85% of the variance in transit access across Chicago neighborhoods. This gives policymakers a clear, defensible case for equity-based investment criteria.</div></div></li>
+        <li class="is-item"><div class="is-num">3</div><div><div class="is-lbl">My urban design background shaped this analysis</div><div class="is-txt">Understanding how cities are structured — zoning, density, street networks, historical disinvestment patterns — helped me ask better questions of the data. The West Side and South Side transit gaps are not random. They reflect specific policy decisions made over decades.</div></div></li>
+        <li class="is-item"><div class="is-num">4</div><div><div class="is-lbl">What I would do next</div><div class="is-txt">Add actual route-level frequency data (not just stop counts), layer in employment center locations to model actual commute feasibility, and build a live Tableau map where city planners can explore the equity data interactively by neighborhood.</div></div></li>
+      </ul>
+    </div>
+  </div>
+  <div class="tu-wrap">
+    <div class="tu-label">Tools &amp; Methods Used</div>
+    <div class="tu-chips">
+      <span class="tuc">&#128013; Python (pandas, numpy)</span>
+      <span class="tuc">&#127760; geopandas</span>
+      <span class="tuc">&#128200; matplotlib</span>
+      <span class="tuc">&#128202; Correlation Analysis</span>
+      <span class="tuc">&#127919; Priority Matrix Scoring</span>
+      <span class="tuc">&#127960; ACS 2021 Census Data</span>
+      <span class="tuc">&#9729;&#65039; Google Colab</span>
+      <span class="tuc">&#128025; GitHub</span>
+    </div>
+  </div>
+  <div class="proj-links">
+    <a href="https://github.com/CW-star/urban-equity-transit-analysis" target="_blank" class="pl pr">GitHub Repository &#8594;</a>
+    <a href="https://github.com/CW-star/urban-equity-transit-analysis/blob/main/notebooks/01_urban_equity_analysis.ipynb" target="_blank" class="pl">Python Notebook &#8594;</a>
+    <a href="mailto:cynthiawanjiku750@gmail.com" class="pl em">&#9993; Contact Me</a>
+  </div>
+  <footer>
+    <div class="fl">Cynthia Wanjiku Ng'ang'a</div>
+    <div class="fr">
+      <a href="https://github.com/CW-star" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a>
+      <a href="mailto:cynthiawanjiku750@gmail.com">Email</a>
+    </div>
+    <div class="fc">&#169; 2026 &middot; Built with purpose</div>
+  </footer>
+</div>
+
+<!-- PROJECT 5 PAGE -->
+<div id="page-p5" class="page proj-page">
+  <div class="ptopbar">
+    <button class="ptb-back" onclick="showPage('home')">&#8592; Back to Portfolio</button>
+    <div class="ptb-sep"></div>
+    <div class="ptb-title">Real Estate Market &amp; Affordability Dashboard</div>
+    <div class="ptb-pill">Python &middot; Zillow ZHVI &middot; Price-to-Income</div>
+  </div>
+  <div class="proj-hero">
+    <div class="ph-grid"></div><div class="ph-glow1"></div><div class="ph-glow2"></div>
+    <div class="proj-hero-inner">
+      <div class="proj-eyebrow">Project 05 &middot; Real Estate Analytics &middot; 493 US Cities</div>
+      <div class="proj-h1">Real Estate Market &amp;<br/><em>Affordability</em><br/>Dashboard</div>
+      <p class="proj-lead">A data-driven affordability analysis of 493 major US cities using Zillow ZHVI home values and ACS 2019 household income data. The headline: 35% of American cities are now unaffordable by conventional measures — and the West Coast has priced out the median household entirely.</p>
+      <div class="proj-meta-row">
+        <div><div class="pm-l">Dataset</div><div class="pm-v">Zillow ZHVI + ACS 2019 Census Income</div></div>
+        <div><div class="pm-l">Cities Analyzed</div><div class="pm-v">493 Major US Cities</div></div>
+        <div><div class="pm-l">Key Metric</div><div class="pm-v">Price-to-Income Ratio by City</div></div>
+        <div><div class="pm-l">Tools</div><div class="pm-v">Python &middot; pandas &middot; matplotlib &middot; Zillow API</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-n" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent">493</span><span class="kpi-l">Major US cities analyzed</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--red)">35%</span><span class="kpi-l">Cities above unaffordable threshold</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--amber)">20.9x</span><span class="kpi-l">Highest PTI: Santa Monica CA</span></div>
+    <div class="kpi"><span class="kpi-n" style="color:var(--green)">106</span><span class="kpi-l">Cities classified: Buy Opportunity</span></div>
+  </div>
+  <div class="workflow-wrap">
+    <div class="wf-sec-label">Analysis Workflow</div>
+    <div class="workflow">
+      <div class="wf-step"><div class="wf-ico">&#128230;</div><div class="wf-tool">Kaggle &middot; Zillow</div><div class="wf-name">Data Loading</div><div class="wf-desc">27,330 cities from Zillow ZHVI. Filter to top 500 by size rank. December 2019 values.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128200;</div><div class="wf-tool">ACS 2019 Census</div><div class="wf-name">Income Mapping</div><div class="wf-desc">State median household income mapped to each city. 51 states + DC.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#127968;</div><div class="wf-tool">Python &middot; pandas</div><div class="wf-name">PTI Scoring</div><div class="wf-desc">Price-to-income ratio = home value divided by annual income. Affordability tiers applied.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#127919;</div><div class="wf-tool">pandas</div><div class="wf-name">Classification</div><div class="wf-desc">Buy Opportunity, Fair Value, Moderate, Overvalued, Severely Overvalued — 5 tiers.</div><div class="wf-arrow">&#8594;</div></div>
+      <div class="wf-step"><div class="wf-ico">&#128202;</div><div class="wf-tool">matplotlib</div><div class="wf-name">Visualizations</div><div class="wf-desc">4 charts: overview, best/worst cities, scatter analysis, investment matrix.</div></div>
+    </div>
+  </div>
+  <div class="tabs-section">
+    <div class="tabs-head">
+      <h2>Charts &amp; Analysis</h2>
+      <p>Four visualizations covering the full US real estate affordability picture.</p>
+    </div>
+    <div class="tab-btns">
+      <button class="tb act" onclick="switchTab(event,'re1')">&#127968; Affordability Overview</button>
+      <button class="tb" onclick="switchTab(event,'re2')">&#128200; Best &amp; Worst Cities</button>
+      <button class="tb" onclick="switchTab(event,'re3')">&#128202; Scatter &amp; Distribution</button>
+      <button class="tb" onclick="switchTab(event,'re4')">&#127919; Investment Matrix</button>
+    </div>
+    <div id="tab-re1" class="tc-wrap act">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">US City Affordability Distribution &middot; Regional Comparison &middot; Key Numbers</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/real-estate-market-dashboard/main/visuals/chart_01_affordability_overview.png" alt="Affordability Overview" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127968;</div><span>chart_01_affordability_overview.png</span></div></div>
+    </div>
+    <div id="tab-re2" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Top 15 Most Unaffordable vs Most Affordable Cities</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/real-estate-market-dashboard/main/visuals/chart_02_best_worst_cities.png" alt="Best Worst Cities" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#128200;</div><span>chart_02_best_worst_cities.png</span></div></div>
+    </div>
+    <div id="tab-re3" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Home Values vs Household Income &middot; PTI Distribution by Region</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/real-estate-market-dashboard/main/visuals/chart_03_scatter_boxplot.png" alt="Scatter Boxplot" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#128202;</div><span>chart_03_scatter_boxplot.png</span></div></div>
+    </div>
+    <div id="tab-re4" class="tc-wrap">
+      <div class="frame"><div class="fhd"><div class="fd" style="background:#FF5F57"></div><div class="fd" style="background:#FFBD2E"></div><div class="fd" style="background:#28CA41"></div><span class="ftt">Market Classification Matrix &middot; Most &amp; Least Affordable States</span><span class="fpill">PYTHON</span></div>
+      <img src="https://raw.githubusercontent.com/CW-star/real-estate-market-dashboard/main/visuals/chart_04_investment_matrix.png" alt="Investment Matrix" class="fimg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fph" style="display:none"><div class="fph-ico">&#127919;</div><span>chart_04_investment_matrix.png</span></div></div>
+    </div>
+  </div>
+  <div class="findings-section">
+    <div class="sec-label">Key Findings</div>
+    <h2 style="font-family:Syne,sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-top:0.75rem">What the Data Reveals</h2>
+    <p style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">Six findings that reframe how affordability and opportunity are distributed across America.</p>
+    <div class="findings-grid">
+      <div class="fg c1"><div class="fg-glow"></div><div class="fg-cat">&#9888; Crisis Scale</div><span class="fg-num">35%</span><p class="fg-body"><strong>35% of 493 major US cities</strong> are above the 5x price-to-income unaffordability threshold. That is not a coastal problem — it is a national one. More than 1 in 3 American cities has priced out the median household from homeownership.</p></div>
+      <div class="fg c3"><div class="fg-glow"></div><div class="fg-cat">&#127757; Regional Gap</div><span class="fg-num">2.4x</span><p class="fg-body">The West averages <strong>6.8x price-to-income</strong> vs the Midwest at 2.8x — a 2.4x regional gap. A household earning the same income has fundamentally different homeownership prospects depending solely on which side of the country they live on.</p></div>
+      <div class="fg c2"><div class="fg-glow"></div><div class="fg-cat">&#127968; Extremes</div><span class="fg-num">20.9x</span><p class="fg-body">Santa Monica at <strong>20.9x price-to-income</strong> means a median California household would need to spend their entire annual income for 21 consecutive years to buy. Hawaii leads at the state level at 8.6x — nearly double the unaffordability threshold.</p></div>
+      <div class="fg c4"><div class="fg-glow"></div><div class="fg-cat">&#128200; Opportunity</div><span class="fg-num">106 cities</span><p class="fg-body"><strong>106 cities classified as Buy Opportunity</strong> — affordable price-to-income ratios below 3x with real home values above $50K. Ohio, Mississippi, Illinois, and Alabama dominate this list. For investors and first-time buyers, the Midwest and Deep South offer the strongest fundamentals.</p></div>
+    </div>
+  </div>
+  <div class="insights-section">
+    <div class="sec-label">My Insights</div>
+    <div class="is-inner">
+      <div class="is-glow"></div>
+      <div class="is-eyebrow">&#128161; My Insights from This Project</div>
+      <div class="is-title">What the Numbers<br/>Tell Us About American Housing</div>
+      <ul class="is-list">
+        <li class="is-item"><div class="is-num">1</div><div><div class="is-lbl">Why price-to-income matters more than absolute price</div><div class="is-txt">A $400K home in Cleveland is fundamentally different from a $400K home in Denver. The Cleveland buyer earns $58K median income — a 6.9x ratio. The Denver buyer earns $77K — a 5.2x ratio. Same price, very different affordability reality. PTI is the metric that makes cities comparable.</div></div></li>
+        <li class="is-item"><div class="is-num">2</div><div><div class="is-lbl">The 35% figure is the headline — but the trajectory matters more</div><div class="is-txt">This data is 2019. Post-pandemic home price appreciation pushed ratios significantly higher in most markets. The 35% figure today is likely closer to 50%+. This analysis establishes the pre-pandemic baseline that makes the subsequent run-up visible and measurable.</div></div></li>
+        <li class="is-item"><div class="is-num">3</div><div><div class="is-lbl">California dominates the unaffordable list for a structural reason</div><div class="is-txt">13 of the top 15 most unaffordable cities are in California. This is not just high demand — it is decades of restrictive zoning, limited housing supply, and Proposition 13 tax policies that discourage existing homeowners from selling. The affordability crisis is a policy problem, not just a market problem.</div></div></li>
+        <li class="is-item"><div class="is-num">4</div><div><div class="is-lbl">What I would do next</div><div class="is-txt">Layer in post-2020 ZHVI data to show the pandemic-era price surge by city, add mortgage rate sensitivity analysis to show how rate changes affect effective affordability, and build a Tableau dashboard allowing users to filter by PTI threshold, region, and home value range interactively.</div></div></li>
+      </ul>
+    </div>
+  </div>
+  <div class="tu-wrap">
+    <div class="tu-label">Tools &amp; Methods Used</div>
+    <div class="tu-chips">
+      <span class="tuc">&#128013; Python (pandas, numpy)</span>
+      <span class="tuc">&#127968; Zillow ZHVI Dataset</span>
+      <span class="tuc">&#128202; matplotlib</span>
+      <span class="tuc">&#127757; ACS 2019 Census Data</span>
+      <span class="tuc">&#127919; Price-to-Income Framework</span>
+      <span class="tuc">&#128200; Market Classification</span>
+      <span class="tuc">&#9729;&#65039; Google Colab</span>
+      <span class="tuc">&#128025; GitHub</span>
+    </div>
+  </div>
+  <div class="proj-links">
+    <a href="https://github.com/CW-star/real-estate-market-dashboard" target="_blank" class="pl pr">GitHub Repository &#8594;</a>
+    <a href="https://github.com/CW-star/real-estate-market-dashboard/blob/main/notebooks/01_real_estate_analysis.ipynb" target="_blank" class="pl">Python Notebook &#8594;</a>
+    <a href="mailto:cynthiawanjiku750@gmail.com" class="pl em">&#9993; Contact Me</a>
+  </div>
+  <footer>
+    <div class="fl">Cynthia Wanjiku Ng'ang'a</div>
+    <div class="fr">
+      <a href="https://github.com/CW-star" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/cynthia-ng%E2%80%99ang%E2%80%99a-b3b764350/" target="_blank">LinkedIn</a>
+      <a href="mailto:cynthiawanjiku750@gmail.com">Email</a>
+    </div>
+    <div class="fc">&#169; 2026 &middot; Built with purpose</div>
+  </footer>
+</div>
+</body>
+</html>
